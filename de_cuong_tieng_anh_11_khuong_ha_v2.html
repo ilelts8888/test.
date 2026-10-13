@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề Cương Ôn Tập Giữa HK1 Tiếng Anh 11 - Trường TH, THCS, THPT Khương Hạ | Ms Lê Hằng English</title>
+  
+  <!-- Google Fonts: Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-purple: #8854C0;
+      --secondary-teal: #00C9A7;
+      --accent-yellow: #FDCB6E;
+      --correct-green: #00D26A;
+      --correct-shadow: #00994d;
+      --incorrect-red: #FF4757;
+      --incorrect-shadow: #cc0011;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-border: rgba(255, 255, 255, 0.85);
+      --text-main: #2d3436;
+      --text-muted: #636e72;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Animated Multi-Gradient Background with floating SVG patterns */
+    body {
+      min-height: 100vh;
+      color: var(--text-main);
+      padding: 16px 12px 60px 12px;
+      position: relative;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 35%, #8fd3f4 70%, #84fab0 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 18s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating SVG Decorative Patterns Layer */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220"><text x="20" y="45" font-size="28">⭐</text><text x="140" y="40" font-size="26">☁️</text><text x="180" y="110" font-size="28">🐱</text><text x="40" y="140" font-size="26">🌸</text><text x="120" y="180" font-size="26">🍓</text><text x="80" y="90" font-size="22">✨</text><text x="10" y="210" font-size="24">🎈</text></svg>');
+      background-size: 220px 220px;
+      animation: floatPattern 28s linear infinite;
+    }
+
+    @keyframes floatPattern {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-220px) rotate(3deg); }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* TOP STATUS BAR (Stars & Progress Indicator) */
+    .top-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      border-radius: 50px;
+      padding: 8px 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+    }
+
+    .star-score-pill {
+      background: linear-gradient(135deg, #ff7675, #fab1a0);
+      color: white;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 6px 14px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 10px rgba(235, 77, 75, 0.3);
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 14px;
+      background: #edf2f7;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid #e2e8f0;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #fdcb6e, #00c9a7, #8854c0);
+      border-radius: 20px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-counter-pill {
+      background: #00c9a7;
+      color: white;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 6px 14px;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0, 201, 167, 0.3);
+    }
+
+    /* COLLAPSIBLE GRAMMAR / TIP BANNER (Screenshot 1) */
+    .tip-banner {
+      background: #fff5f5;
+      border: 2px solid #ffd8d8;
+      border-radius: 16px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(255, 107, 129, 0.12);
+    }
+
+    .tip-banner-content {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #d63031;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tip-banner-content .highlight {
+      color: #ff4757;
+      background: #ffe3e3;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .tip-collapse-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ff7675;
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(255, 118, 117, 0.4);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .tip-collapse-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* HERO CARD / HEADER SECTION (Screenshot 2) */
+    .hero-card {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px 28px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-school-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #0984e3;
+      color: white;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      align-self: flex-start;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: #2d3436;
+      line-height: 1.3;
+    }
+
+    .hero-title span {
+      color: #e84393;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .teacher-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f1f2f6;
+      color: #2f3542;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border-radius: 25px;
+      align-self: flex-start;
+      border: 1px dashed #ced6e0;
+    }
+
+    /* MANDATORY NOTICE BOX */
+    .mandatory-notice {
+      background: #fffbe6;
+      border: 2px dashed #faad14;
+      border-radius: 18px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 16px rgba(250, 173, 20, 0.15);
+    }
+
+    .notice-header {
+      color: #d46b08;
+      font-size: 1.1rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .notice-body {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #595959;
+      line-height: 1.55;
+    }
+
+    .notice-footer {
+      margin-top: 6px;
+      color: #cf1322;
+      font-weight: 800;
+      font-style: italic;
+    }
+
+    /* READING PASSAGE CARD INLINE */
+    .passage-card {
+      background: linear-gradient(145deg, #ffffff, #f8faff);
+      border: 2.5px solid #74b9ff;
+      border-radius: 22px;
+      padding: 24px 26px;
+      margin: 32px 0 20px 0;
+      box-shadow: 0 10px 25px rgba(116, 185, 255, 0.2);
+      position: relative;
+    }
+
+    .passage-badge {
+      display: inline-block;
+      background: #0984e3;
+      color: white;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 5px 14px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 6px rgba(9, 132, 227, 0.25);
+    }
+
+    .passage-text {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #2f3542;
+      font-weight: 600;
+      text-align: justify;
+    }
+
+    .passage-text p {
+      margin-bottom: 12px;
+    }
+
+    .passage-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* SECTION HEADER BANNER */
+    .section-header-banner {
+      background: linear-gradient(90deg, #8854C0, #00C9A7);
+      color: white;
+      font-weight: 900;
+      font-size: 1.15rem;
+      padding: 12px 22px;
+      border-radius: 16px;
+      margin: 35px 0 18px 0;
+      box-shadow: 0 6px 15px rgba(136, 84, 192, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* QUESTION CARD */
+    .question-card {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    .question-card:hover {
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .question-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .q-number-pill {
+      background: linear-gradient(135deg, var(--primary-purple), #a29bfe);
+      color: white;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 5px 14px;
+      border-radius: 20px;
+      box-shadow: 0 3px 8px rgba(136, 84, 192, 0.3);
+    }
+
+    .q-type-badge {
+      background: #dfe6e9;
+      color: #636e72;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .question-content {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1e272e;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      white-space: pre-line;
+    }
+
+    /* 3D GAMIFICATION ANSWER BUTTONS (2x2 Grid) */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 650px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      color: #2d3436;
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 16px 20px;
+      border-radius: 18px;
+      cursor: pointer;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 6px 0 #cbd5e1;
+      transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      line-height: 1.4;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      transform: translateY(-2px) scale(1.015);
+      border-color: var(--secondary-teal);
+      box-shadow: 0 8px 0 #a0aec0;
+    }
+
+    .option-btn:active:not(:disabled) {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #a0aec0;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+      opacity: 0.95;
+    }
+
+    .option-btn.btn-correct {
+      background: var(--correct-green) !important;
+      color: white !important;
+      border-color: var(--correct-shadow) !important;
+      box-shadow: 0 6px 0 var(--correct-shadow) !important;
+      transform: translateY(0);
+    }
+
+    .option-btn.btn-wrong {
+      background: var(--incorrect-red) !important;
+      color: white !important;
+      border-color: var(--incorrect-shadow) !important;
+      box-shadow: 0 6px 0 var(--incorrect-shadow) !important;
+      animation: shake 0.4s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+
+    /* EXPLANATION BOX (Exact Match with Screenshot 1) */
+    .explanation-card {
+      display: none;
+      margin-top: 20px;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 2px solid #ffeaa7;
+      border-left: 6px solid #e17055;
+      padding: 22px 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .explain-header-title {
+      color: #e17055;
+      font-size: 1.15rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Dịch câu hỏi (Yellow pastel card with golden left bar) */
+    .trans-box {
+      background: #fffdf0;
+      border-left: 5px solid #fdcb6e;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #2d3436;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      white-space: pre-line;
+      line-height: 1.55;
+    }
+
+    /* 1. Phân tích 4 đáp án */
+    .explain-section-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #d63031;
+      margin-bottom: 10px;
+    }
+
+    .options-analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 650px) {
+      .options-analysis-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .analysis-item {
+      background: #ffffff;
+      border: 1.5px solid #edf2f7;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .analysis-word {
+      font-weight: 900;
+      color: #0984e3;
+    }
+
+    .analysis-word.is-correct-word {
+      color: #00b894;
+    }
+
+    .analysis-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 8px;
+      margin: 0 4px;
+    }
+
+    .tag-wrong-form {
+      background: #ffe3e3;
+      color: #d63031;
+    }
+
+    .tag-gram {
+      background: #ede9fe;
+      color: #6c5ce7;
+    }
+
+    .tag-correct {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .analysis-meaning {
+      font-weight: 700;
+      color: #d35400;
+      margin-top: 4px;
+    }
+
+    /* 2. Tại sao đúng & 3. Tại sao sai */
+    .reason-box {
+      margin-top: 10px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      line-height: 1.55;
+      color: #2d3436;
+    }
+
+    .reason-box .reason-tag {
+      display: inline-block;
+      font-weight: 900;
+      padding: 3px 10px;
+      border-radius: 8px;
+      margin-right: 6px;
+    }
+
+    .reason-correct-tag {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .reason-wrong-tag {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    /* FOOTER PROMOTION CARD (Screenshot 2) */
+    .footer-promo-card {
+      background: linear-gradient(135deg, #e84393, #fd79a8);
+      border-radius: 24px;
+      color: white;
+      padding: 24px 24px;
+      margin-top: 40px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(232, 67, 147, 0.35);
+      text-align: center;
+      position: relative;
+    }
+
+    .footer-promo-card h4 {
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .footer-promo-card .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: #d63031;
+      font-weight: 900;
+      font-size: 1.2rem;
+      padding: 8px 22px;
+      border-radius: 30px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .footer-promo-card p {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #ffeaa7;
+      line-height: 1.5;
+    }
+
+    /* SUBMIT BOTTOM ACTION */
+    .submit-section {
+      text-align: center;
+      margin: 35px 0;
+    }
+
+    .submit-exam-btn {
+      background: linear-gradient(135deg, #00C9A7, #8854C0);
+      color: white;
+      font-size: 1.35rem;
+      font-weight: 900;
+      padding: 18px 45px;
+      border: none;
+      border-radius: 35px;
+      cursor: pointer;
+      box-shadow: 0 8px 0 #5f27cd;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .submit-exam-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 11px 0 #5f27cd;
+    }
+
+    .submit-exam-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #5f27cd;
+    }
+
+    /* MODALS */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+
+    .modal-card {
+      background: white;
+      border-radius: 24px;
+      padding: 32px 28px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      animation: popModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popModal {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-card h3 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--primary-purple);
+      margin-bottom: 8px;
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #dfe6e9;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 18px 0 10px 0;
+      outline: none;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .modal-input:focus {
+      border-color: var(--primary-purple);
+      box-shadow: 0 0 0 4px rgba(136, 84, 192, 0.15);
+    }
+
+    .modal-input.input-error {
+      border-color: var(--incorrect-red);
+      background: #ffe3e3;
+    }
+
+    .input-error-msg {
+      color: var(--incorrect-red);
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: none;
+      margin-bottom: 12px;
+    }
+
+    .modal-action-btn {
+      background: var(--primary-purple);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 0 #6c4298;
+      transition: all 0.2s;
+    }
+
+    .modal-action-btn:hover {
+      background: #6c4298;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Background SVG Patterns -->
+  <div class="bg-pattern"></div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="container">
+
+    <!-- TOP STATUS BAR (Real-time stars and progress) -->
+    <div class="top-status-bar">
+      <div class="star-score-pill">
+        <span>⭐</span>
+        <span id="star-score-display">0/50</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-bar"></div>
+      </div>
+      <div class="progress-counter-pill" id="counter-pill">
+        0/50
+      </div>
+    </div>
+
+    <!-- COLLAPSIBLE GRAMMAR TIP BANNER (Exact Style from Screenshot 1) -->
+    <div class="tip-banner" id="tipBanner">
+      <div class="tip-banner-content">
+        <span>🚨</span>
+        <span>Bất quy tắc: good → <span class="highlight">better</span> → the best · bad → <span class="highlight">worse</span> → the worst · far → <span class="highlight">farther/further</span>.</span>
+      </div>
+      <button class="tip-collapse-btn" onclick="toggleTipBanner()" title="Thu nhỏ/Mở rộng">-</button>
+    </div>
+
+    <!-- HERO UNIT CARD (Exact Style from Screenshot 2) -->
+    <div class="hero-card">
+      <div class="hero-school-tag">
+        <span>🏫</span> SỞ GD&ĐT HÀ NỘI · TRƯỜNG TH, THCS, THPT KHƯƠNG HẠ
+      </div>
+      <h1 class="hero-title">ĐỀ CƯƠNG ÔN TẬP GIỮA HỌC KỲ I · <span>TIẾNG ANH 11</span></h1>
+      <p class="hero-subtitle">
+        Năm học 2026 – 2027 · Trọng tâm kiến thức: Unit 1 (A Long and Healthy Life) & Unit 2 (The Generation Gap)<br>
+        Ngữ pháp thì Hiện tại hoàn thành, Quá khứ đơn, Động từ khuyết thiếu (must / have to / should), Kỹ năng đọc hiểu & Viết lại câu
+      </p>
+      <div class="teacher-badge">
+        <span>👩‍🏫</span> Giáo viên tạo: <strong>Ms Lê Hằng English</strong> · ☎️ 0975 178 986 / 0584 965 348
+      </div>
+    </div>
+
+    <!-- MANDATORY INSTRUCTION BANNER -->
+    <div class="mandatory-notice">
+      <div class="notice-header">
+        <span>⚠️</span> LỜI NHẮC CỰC KỲ QUAN TRỌNG <span>⚠️</span>
+      </div>
+      <div class="notice-body">
+        Chỉ có đọc kỹ giải thích ngay sau mỗi câu, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên.<br>
+        Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!
+      </div>
+      <div class="notice-footer">
+        * Kéo tới đâu, làm tới đó! *
+      </div>
+    </div>
+
+    <!-- QUESTIONS LIST CONTAINER (PASSAGES ARE EMBEDDED INLINE IN EXACT SEQUENTIAL ORDER) -->
+    <div id="questions-list">
+      <!-- Generated dynamically by JavaScript -->
+    </div>
+
+    <!-- SUBMIT BUTTON -->
+    <div class="submit-section">
+      <button class="submit-exam-btn" onclick="openNameModal()">
+        🎯 NỘP BÀI & TỔNG KẾT KẾT QUẢ
+      </button>
+    </div>
+
+    <!-- FOOTER PROMOTION CARD (Screenshot 2) -->
+    <div class="footer-promo-card">
+      <h4>ĐĂNG KÝ KHOÁ HỌC TIẾNG ANH LỚP 1 → 12 cùng Ms Lê Hằng English</h4>
+      <div class="phone-pill">
+        <span>☎️</span> 0975 178 986 · 0584 965 348
+      </div>
+      <p>✨ Trải nghiệm hệ thống bài tập web độc lạ · Chấm tự động · Giải chi tiết siêu đẹp · Luyện thi vào 10 và THPT Quốc gia hiệu quả!</p>
+    </div>
+
+  </div>
+
+  <!-- NAME INPUT MODAL -->
+  <div class="modal-overlay" id="nameModal">
+    <div class="modal-card">
+      <h3>Chào con nhé! 🌟</h3>
+      <p style="color: #636e72; font-weight: 700;">Hãy nhập họ và tên của con để nhận bảng điểm và lời nhận xét từ cô Lê Hằng nhé:</p>
+      <input type="text" id="studentNameInput" class="modal-input" placeholder="Ví dụ: Nguyễn Minh Anh..." onkeypress="if(event.key==='Enter') confirmStudentName();">
+      <p class="input-error-msg" id="nameErrorMsg">⚠️ Vui lòng nhập tên trước khi xem kết quả nhé!</p>
+      <button class="modal-action-btn" onclick="confirmStudentName()">Xem Kết Quả Ngay 🚀</button>
+    </div>
+  </div>
+
+  <!-- RESULT SCORE MODAL -->
+  <div class="modal-overlay" id="resultModal">
+    <div class="modal-card">
+      <h3 id="resultStudentTitle">XUẤT SẮC!</h3>
+      <div style="font-size: 2.3rem; font-weight: 900; color: #e17055; margin: 12px 0;" id="resultScoreText">
+        50 / 50 CÂU ĐÚNG
+      </div>
+      <p id="resultEncouragement" style="font-size: 1.05rem; font-weight: 800; color: #2d3436; line-height: 1.55; margin-bottom: 20px;">
+        Lời nhắn của cô Lê Hằng...
+      </p>
+      <button class="modal-action-btn" onclick="closeResultModal()">Quay Lại Đọc Kỹ Giải Thích 📖</button>
+    </div>
+  </div>
+
+  <script>
+    // ==========================================
+    // 1. WEB AUDIO API SYNTHESIZER (No external links)
+    // ==========================================
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new AudioContextClass();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // Play cheerful "Ding" sound for Correct Answer
+    function playSoundCorrect() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc1 = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(587.33, now); // D5
+        osc1.frequency.exponentialRampToValueAtTime(880, now + 0.12); // A5
+
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(880, now);
+        osc2.frequency.exponentialRampToValueAtTime(1174.66, now + 0.15); // D6
+
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 0.45);
+        osc2.stop(now + 0.45);
+      } catch (e) {
+        console.log("Audio API not allowed yet", e);
+      }
+    }
+
+    // Play fun "Téo tèo tèo / Buzz" sound for Wrong Answer
+    function playSoundWrong() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(320, now);
+        osc.frequency.linearRampToValueAtTime(220, now + 0.12);
+        osc.frequency.linearRampToValueAtTime(150, now + 0.3);
+
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.35);
+      } catch (e) {
+        console.log("Audio API not allowed yet", e);
+      }
+    }
+
+    // ==========================================
+    // 2. CANVAS CONFETTI EFFECT
+    // ==========================================
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let confettiParticles = [];
+    const confettiColors = ['#00C9A7', '#8854C0', '#FF4757', '#FDCB6E', '#0984E3', '#00D26A'];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function launchConfetti(x, y, count = 35) {
+      for (let i = 0; i < count; i++) {
+        confettiParticles.push({
+          x: x || canvas.width / 2,
+          y: y || canvas.height / 2,
+          r: Math.random() * 6 + 3,
+          color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+          tilt: Math.random() * 10 - 10,
+          tiltAngleInc: Math.random() * 0.08 + 0.04,
+          tiltAngle: 0,
+          dx: (Math.random() - 0.5) * 12,
+          dy: Math.random() * -12 - 4
+        });
+      }
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < confettiParticles.length; i++) {
+        const p = confettiParticles[i];
+        p.tiltAngle += p.tiltAngleInc;
+        p.y += (Math.cos(p.tiltAngle) + 1 + p.r / 2) / 2 + 3;
+        p.x += Math.sin(p.tiltAngle) * 2 + p.dx * 0.3;
+        p.dy += 0.2;
+        p.y += p.dy * 0.15;
+
+        ctx.beginPath();
+        ctx.lineWidth = p.r;
+        ctx.strokeStyle = p.color;
+        ctx.moveTo(p.x + p.tilt + p.r, p.y);
+        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
+        ctx.stroke();
+
+        if (p.y > canvas.height) {
+          confettiParticles.splice(i, 1);
+          i--;
+        }
+      }
+      requestAnimationFrame(animateConfetti);
+    }
+    animateConfetti();
+
+    // ==========================================
+    // 3. FULL 50 QUESTIONS DATA
+    // ==========================================
+    const quizData = [{"id": 1, "section": "PHẦN I: TỪ VỰNG & NGỮ PHÁP CƠ BẢN", "badge": "Từ vựng Unit 1", "question": "Question 1. Good hygiene can help prevent the spread of _____ diseases in crowded public places.", "options": [{"text": "balanced", "isCorrect": false}, {"text": "immune", "isCorrect": false}, {"text": "infectious", "isCorrect": true}, {"text": "nutritious", "isCorrect": false}], "explanation": {"trans": "Vệ sinh tốt có thể giúp ngăn ngừa sự lây lan của các bệnh truyền nhiễm ở những nơi công cộng đông người.", "analysis": [{"word": "balanced", "tag": "adj - cân bằng", "tagClass": "tag-gram", "meaning": "cân bằng (thường dùng: balanced diet)"}, {"word": "immune", "tag": "adj - miễn dịch", "tagClass": "tag-gram", "meaning": "miễn dịch (immune system)"}, {"word": "infectious", "tag": "adj - truyền nhiễm", "tagClass": "tag-correct", "meaning": "lây nhiễm, truyền nhiễm", "isCorrectWord": true}, {"word": "nutritious", "tag": "adj - bổ dưỡng", "tagClass": "tag-gram", "meaning": "giàu dinh dưỡng (nutritious food)"}], "rule": "Cụm danh từ / Collocation Unit 1", "whyCorrect": "Ta có cụm <strong>infectious diseases</strong> nghĩa là <em>bệnh truyền nhiễm / lây nhiễm</em>. Kết hợp với từ 'prevent the spread of' (ngăn chặn sự lây lan) thì 'infectious' là từ phù hợp nhất về ngữ nghĩa.", "whyWrong": "<strong>balanced</strong> (cân đối), <strong>immune</strong> (miễn dịch - đi với system/response), <strong>nutritious</strong> (bổ dưỡng) đều không ghép với 'diseases' để chỉ căn bệnh lây lan."}}, {"id": 2, "section": "PHẦN I: TỪ VỰNG & NGỮ PHÁP CƠ BẢN", "badge": "Từ vựng Unit 2", "question": "Question 2. Parents should not _____ their own choices on teenagers when discussing education and future careers.", "options": [{"text": "impose", "isCorrect": true}, {"text": "respect", "isCorrect": false}, {"text": "experience", "isCorrect": false}, {"text": "behave", "isCorrect": false}], "explanation": {"trans": "Cha mẹ không nên áp đặt các lựa chọn của bản thân lên thanh thiếu niên khi thảo luận về học tập và nghề nghiệp tương lai.", "analysis": [{"word": "impose", "tag": "v - áp đặt", "tagClass": "tag-correct", "meaning": "áp đặt (cấu trúc: impose sth on sb)", "isCorrectWord": true}, {"word": "respect", "tag": "v - tôn trọng", "tagClass": "tag-gram", "meaning": "tôn trọng ai/cái gì (không đi với on)"}, {"word": "experience", "tag": "v - trải nghiệm", "tagClass": "tag-gram", "meaning": "trải qua, trải nghiệm"}, {"word": "behave", "tag": "v - cư xử", "tagClass": "tag-gram", "meaning": "hành xử, cư xử (nội động từ)"}], "rule": "Cấu trúc giới từ: impose something on somebody", "whyCorrect": "Cấu trúc <strong>impose sth on sb</strong>: áp đặt cái gì lên ai. Trong câu có tân ngữ 'their own choices' và giới từ 'on teenagers'.", "whyWrong": "<strong>respect</strong> (tôn trọng) mang nghĩa tích cực đi ngược lại với ý khuyên 'should not', và không dùng với giới từ 'on'. <strong>experience</strong> và <strong>behave</strong> không đi với cấu trúc này."}}, {"id": 3, "section": "PHẦN I: TỪ VỰNG & NGỮ PHÁP CƠ BẢN", "badge": "Từ loại (Word Form)", "question": "Question 3. Regular exercise can improve the body's natural _____ to certain diseases.", "options": [{"text": "resist", "isCorrect": false}, {"text": "resistant", "isCorrect": false}, {"text": "resistance", "isCorrect": true}, {"text": "resisting", "isCorrect": false}], "explanation": {"trans": "Tập thể dục thường xuyên có thể cải thiện sức đề kháng tự nhiên của cơ thể đối với một số bệnh nhất định.", "analysis": [{"word": "resist", "tag": "v - kháng cự", "tagClass": "tag-wrong-form", "meaning": "chống lại, kháng cự (động từ)"}, {"word": "resistant", "tag": "adj - có tính kháng", "tagClass": "tag-gram", "meaning": "có sức chịu đựng, có tính kháng cự"}, {"word": "resistance", "tag": "n - sức đề kháng", "tagClass": "tag-correct", "meaning": "sự kháng cự, sức đề kháng", "isCorrectWord": true}, {"word": "resisting", "tag": "V-ing / hiện tại phân từ", "tagClass": "tag-wrong-form", "meaning": "đang chống lại (dạng V-ing)"}], "rule": "Vị trí của Danh từ sau Tính từ", "whyCorrect": "Sau sở hữu cách 'body's' và tính từ 'natural', ta cần một <strong>Danh từ (Noun)</strong> để làm tân ngữ cho động từ 'improve'. Ta có cụm <em>natural resistance to</em> (sức đề kháng tự nhiên đối với...).", "whyWrong": "<strong>resist</strong> là động từ nguyên mẫu; <strong>resistant</strong> là tính từ (không thể đứng sau tính từ natural để làm tân ngữ); <strong>resisting</strong> là danh động từ/phân từ không dùng trong thuật ngữ y khoa này."}}, {"id": 4, "section": "PHẦN I: TỪ VỰNG & NGỮ PHÁP CƠ BẢN", "badge": "Từ loại & Cấu trúc liên động từ", "question": "Question 4. Teenagers should make some decisions themselves so that they can become more _____ as they grow older.", "options": [{"text": "independence", "isCorrect": false}, {"text": "independently", "isCorrect": false}, {"text": "dependence", "isCorrect": false}, {"text": "independent", "isCorrect": true}], "explanation": {"trans": "Thanh thiếu niên nên tự đưa ra một số quyết định để các em có thể trở nên tự lập hơn khi lớn lên.", "analysis": [{"word": "independence", "tag": "n - sự độc lập", "tagClass": "tag-wrong-form", "meaning": "nền độc lập, sự tự chủ (danh từ)"}, {"word": "independently", "tag": "adv - một cách độc lập", "tagClass": "tag-gram", "meaning": "một cách độc lập (trạng từ)"}, {"word": "dependence", "tag": "n - sự phụ thuộc", "tagClass": "tag-wrong-form", "meaning": "sự lệ thuộc, phụ thuộc (danh từ)"}, {"word": "independent", "tag": "adj - tự lập, độc lập", "tagClass": "tag-correct", "meaning": "tự lập, tự chủ (tính từ)", "isCorrectWord": true}], "rule": "Cấu trúc: become + (more) + Tính từ (Adjective)", "whyCorrect": "Động từ 'become' là một linking verb (động từ liên kết), theo sau nó phải là một <strong>Tính từ (Adj)</strong>. Cấu trúc so sánh hơn của tính từ dài: <em>more + independent</em> (tự lập hơn).", "whyWrong": "<strong>independence</strong> và <strong>dependence</strong> là danh từ; <strong>independently</strong> là trạng từ (không đứng sau linking verb become)."}}, {"id": 5, "section": "PHẦN I: TỪ VỰNG & NGỮ PHÁP CƠ BẢN", "badge": "Giới từ / Phrasal Verb", "question": "Question 5. Differences in attitudes and lifestyles can sometimes lead _____ disagreements between parents and their teenagers.", "options": [{"text": "to", "isCorrect": true}, {"text": "for", "isCorrect": false}, {"text": "with", "isCorrect": false}, {"text": "at", "isCorrect": false}], "explanation": {"trans": "Sự khác biệt về quan điểm và lối sống đôi khi có thể dẫn đến những bất đồng giữa cha mẹ và con cái ở tuổi vị thành niên.", "analysis": [{"word": "to", "tag": "giới từ đi với lead", "tagClass": "tag-correct", "meaning": "dẫn đến, dẫn tới (lead to sth)", "isCorrectWord": true}, {"word": "for", "tag": "giới từ", "tagClass": "tag-wrong-form", "meaning": "cho, vì"}, {"word": "with", "tag": "giới từ", "tagClass": "tag-wrong-form", "meaning": "với, cùng với"}, {"word": "at", "tag": "giới từ", "tagClass": "tag-wrong-form", "meaning": "ở tại, vào lúc"}], "rule": "Cụm động từ cố định: lead to something", "whyCorrect": "Ta có cụm động từ <strong>lead to + Noun/V-ing</strong> = <em>cause / result in (dẫn đến điều gì)</em>.", "whyWrong": "Động từ 'lead' không kết hợp với giới từ for, with, at để mang nghĩa 'dẫn đến kết quả gì'."}}, {"id": 6, "section": "PHẦN I: TỪ VỰNG & NGỮ PHÁP CƠ BẢN", "badge": "Cụm động từ (Phrasal Verbs)", "question": "Question 6. Families should _____ solutions together when disagreements between parents and teenagers become difficult to resolve.", "options": [{"text": "keep up with", "isCorrect": false}, {"text": "come up with", "isCorrect": true}, {"text": "put up with", "isCorrect": false}, {"text": "catch up with", "isCorrect": false}], "explanation": {"trans": "Các gia đình nên cùng nhau tìm ra giải pháp khi những bất đồng giữa cha mẹ và con cái trở nên khó giải quyết.", "analysis": [{"word": "keep up with", "tag": "phrasal verb", "tagClass": "tag-gram", "meaning": "theo kịp, bắt kịp (tốc độ, xu hướng)"}, {"word": "come up with", "tag": "phrasal verb", "tagClass": "tag-correct", "meaning": "nghĩ ra, tìm ra (ý tưởng, giải pháp)", "isCorrectWord": true}, {"word": "put up with", "tag": "phrasal verb", "tagClass": "tag-gram", "meaning": "chịu đựng (tolerate)"}, {"word": "catch up with", "tag": "phrasal verb", "tagClass": "tag-gram", "meaning": "đuổi kịp ai đó, bắt kịp"}], "rule": "Collocation: come up with solutions / ideas", "whyCorrect": "Cụm <strong>come up with solutions</strong> có nghĩa là <em>nghĩ ra / đưa ra các giải pháp</em>. Rất phù hợp với ngữ cảnh gia đình cùng tìm cách giải quyết bất đồng.", "whyWrong": "<strong>keep up with</strong> (theo kịp ai), <strong>put up with</strong> (cam chịu/chịu đựng), <strong>catch up with</strong> (đuổi kịp) không đi với danh từ 'solutions' trong nghĩa tìm ra giải pháp."}}, {"id": 7, "section": "PHẦN I: TỪ VỰNG & NGỮ PHÁP CƠ BẢN", "badge": "Sự phối thì: Hiện tại hoàn thành & Quá khứ đơn", "question": "Question 7. Scientists _____ major progress in disease prevention since they _____ this research programme ten years ago.", "options": [{"text": "made / started", "isCorrect": false}, {"text": "have made / have started", "isCorrect": false}, {"text": "have made / started", "isCorrect": true}, {"text": "made / have started", "isCorrect": false}], "explanation": {"trans": "Các nhà khoa học đã đạt được tiến bộ lớn trong phòng chống dịch bệnh kể từ khi họ bắt đầu chương trình nghiên cứu này mười năm trước.", "analysis": [{"word": "made / started", "tag": "Quá khứ đơn / Quá khứ đơn", "tagClass": "tag-wrong-form", "meaning": "sai cấu trúc của mệnh đề chính đi với since"}, {"word": "have made / have started", "tag": "HTHT / HTHT", "tagClass": "tag-wrong-form", "meaning": "sai thì ở mệnh đề sau since có mốc thời gian ago"}, {"word": "have made / started", "tag": "HTHT / Quá khứ đơn", "tagClass": "tag-correct", "meaning": "chuẩn cấu trúc: S + have/has VpII + since + S + V-ed", "isCorrectWord": true}, {"word": "made / have started", "tag": "Quá khứ đơn / HTHT", "tagClass": "tag-wrong-form", "meaning": "đảo ngược sai hoàn toàn cấu trúc"}], "rule": "Quy tắc phối thì với SINCE: S + have/has VpII + since + S + V_ed (mốc thời gian)", "whyCorrect": "Mệnh đề chính diễn tả hành động kéo dài từ quá khứ đến hiện tại (đạt tiến bộ) → dùng <strong>Hiện tại hoàn thành (have made)</strong>. Mệnh đề sau 'since' chỉ mốc bắt đầu có 'ten years ago' → dùng <strong>Quá khứ đơn (started)</strong>.", "whyWrong": "Mệnh đề sau 'since' có mốc thời gian xác định trong quá khứ không được dùng hiện tại hoàn thành. Mệnh đề chính không thể dùng quá khứ đơn khi đi với since."}}, {"id": 8, "section": "PHẦN I: TỪ VỰNG & NGỮ PHÁP CƠ BẢN", "badge": "Động từ khuyết thiếu (Modal Verbs)", "question": "Question 8. According to school rules, students _____ wear their uniforms during all regular school days.", "options": [{"text": "should", "isCorrect": false}, {"text": "mustn't", "isCorrect": false}, {"text": "don't have to", "isCorrect": false}, {"text": "have to", "isCorrect": true}], "explanation": {"trans": "Theo nội quy nhà trường, học sinh phải mặc đồng phục trong suốt tất cả các ngày học bình thường.", "analysis": [{"word": "should", "tag": "nên", "tagClass": "tag-gram", "meaning": "chỉ lời khuyên (không mang tính bắt buộc của luật lệ)"}, {"word": "mustn't", "tag": "không được phép", "tagClass": "tag-wrong-form", "meaning": "cấm đoán (ngược nghĩa câu)"}, {"word": "don't have to", "tag": "không cần phải", "tagClass": "tag-wrong-form", "meaning": "không bắt buộc (ngược nghĩa)"}, {"word": "have to", "tag": "phải (bắt buộc khách quan)", "tagClass": "tag-correct", "meaning": "bắt buộc do quy định/luật lệ từ bên ngoài", "isCorrectWord": true}], "rule": "Phân biệt Modal Verbs: have to chỉ sự bắt buộc do nội quy/luật lệ bên ngoài", "whyCorrect": "Cụm 'According to school rules' (theo quy định của trường) chỉ sự bắt buộc mang tính khách quan do hoàn cảnh/luật định → dùng <strong>have to</strong>.", "whyWrong": "<strong>should</strong> chỉ là lời khuyên; <strong>mustn't</strong> là cấm đoán; <strong>don't have to</strong> là không bắt buộc (không phù hợp với nội quy trường học bắt buộc mặc đồng phục)."}}, {"id": 9, "section": "PHẦN I: TỪ VỰNG & NGỮ PHÁP CƠ BẢN", "badge": "Động từ khuyết thiếu (Modal Verbs)", "question": "Question 9. Parents _____ make every decision for their teenagers, as this may limit their independence.", "options": [{"text": "must", "isCorrect": false}, {"text": "shouldn't", "isCorrect": true}, {"text": "doesn't have to", "isCorrect": false}, {"text": "have to", "isCorrect": false}], "explanation": {"trans": "Cha mẹ không nên đưa ra mọi quyết định thay cho con cái tuổi vị thành niên, vì điều này có thể hạn chế tính tự lập của các em.", "analysis": [{"word": "must", "tag": "phải (bắt buộc)", "tagClass": "tag-wrong-form", "meaning": "bắt buộc (sai ngữ nghĩa vì vế sau nêu hậu quả xấu)"}, {"word": "shouldn't", "tag": "không nên (lời khuyên)", "tagClass": "tag-correct", "meaning": "không nên làm gì (lời khuyên)", "isCorrectWord": true}, {"word": "doesn't have to", "tag": "sai ngữ pháp chủ ngữ số nhiều", "tagClass": "tag-wrong-form", "meaning": "sai ngữ pháp (chủ ngữ Parents số nhiều phải dùng don't)"}, {"word": "have to", "tag": "phải", "tagClass": "tag-wrong-form", "meaning": "bắt buộc (ngược nghĩa ngữ cảnh)"}], "rule": "Lời khuyên tiêu cực: shouldn't + V_nguyên thể", "whyCorrect": "Vế sau chỉ ra lý do 'as this may limit their independence' (vì điều này có thể hạn chế tính độc lập của con) → Vế trước là lời khuyên không nên làm: <strong>shouldn't</strong>.", "whyWrong": "<strong>must</strong> và <strong>have to</strong> mang nghĩa bắt buộc, trái ngược ngữ cảnh cảnh báo. <strong>doesn't have to</strong> sai ngữ pháp với chủ ngữ số nhiều 'Parents'."}}, {"id": 10, "section": "PHẦN II: ĐỌC ĐIỀN QUẢNG CÁO - BUILD BETTER SLEEP HABITS!", "badge": "Bài đọc điền khuyết (Cloze Test)", "question": "Question 10. Participants will learn how the body's natural (10) _____ regulates when we feel awake or sleepy.", "options": [{"text": "digestion", "isCorrect": false}, {"text": "rhythm", "isCorrect": true}, {"text": "nutrient", "isCorrect": false}, {"text": "bacteria", "isCorrect": false}], "explanation": {"trans": "Những người tham gia sẽ học được cách nhịp sinh học tự nhiên của cơ thể điều chỉnh khi nào chúng ta cảm thấy tỉnh táo hoặc buồn ngủ.", "analysis": [{"word": "digestion", "tag": "n - sự tiêu hóa", "tagClass": "tag-gram", "meaning": "hệ tiêu hóa, sự tiêu hóa thức ăn"}, {"word": "rhythm", "tag": "n - nhịp điệu/nhịp sinh học", "tagClass": "tag-correct", "meaning": "nhịp sinh học (natural rhythm / circadian rhythm)", "isCorrectWord": true}, {"word": "nutrient", "tag": "n - chất dinh dưỡng", "tagClass": "tag-gram", "meaning": "dinh dưỡng"}, {"word": "bacteria", "tag": "n (số nhiều) - vi khuẩn", "tagClass": "tag-gram", "meaning": "vi khuẩn"}], "rule": "Thuật ngữ sinh học / Collocation: natural rhythm", "whyCorrect": "Cụm <strong>natural rhythm / circadian rhythm</strong> là <em>nhịp sinh học tự nhiên</em> của cơ thể, điều tiết chu kỳ thức - ngủ ('regulates when we feel awake or sleepy').", "whyWrong": "<strong>digestion</strong> (tiêu hóa), <strong>nutrient</strong> (chất dinh dưỡng), <strong>bacteria</strong> (vi khuẩn) không có chức năng quy định cảm giác thức/ngủ."}, "reading_passage": {"badge": "Đoạn văn đọc điền (Câu 10 - 14)", "title": "📢 Read the following advertisement and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 10 to 14.\nBUILD BETTER SLEEP HABITS!", "content": "\n        <p style=\"font-style: italic; color: #636e72; margin-bottom: 12px; font-weight: 700;\">Read the following advertisement and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 10 to 14.</p>\n        <div style=\"text-align: center; font-size: 1.3rem; font-weight: 900; color: #0984e3; margin-bottom: 12px; letter-spacing: 1px;\">BUILD BETTER SLEEP HABITS!</div>\n        <p>Do you often feel tired after a late night? Join our Better Sleep Programme and discover how small changes can improve your daily routine.</p>\n        <p>Participants will learn how the body's natural <strong>(10) _____</strong> regulates when we feel awake or sleepy. Our experts will also provide useful tips <strong>(11) _____</strong> getting quality sleep and avoiding habits that keep you awake at night.</p>\n        <p>The programme includes activities designed to reduce daytime <strong>(12) _____</strong> and help you stay focused at school. To avoid feeling tired the next morning, participants <strong>(13) _____</strong> stay up too late the night before.</p>\n        <p>Many students who joined our previous workshops <strong>(14) _____</strong> positive changes in their sleep habits since then.</p>\n        "}}, {"id": 11, "section": "PHẦN II: ĐỌC ĐIỀN QUẢNG CÁO - BUILD BETTER SLEEP HABITS!", "badge": "Giới từ đi với danh từ Tips", "question": "Question 11. Our experts will also provide useful tips (11) _____ getting quality sleep and avoiding habits that keep you awake at night.", "options": [{"text": "with", "isCorrect": false}, {"text": "at", "isCorrect": false}, {"text": "from", "isCorrect": false}, {"text": "on", "isCorrect": true}], "explanation": {"trans": "Các chuyên gia của chúng tôi cũng sẽ cung cấp những lời khuyên hữu ích về việc có được giấc ngủ chất lượng và tránh những thói quen khiến bạn tỉnh táo vào ban đêm.", "analysis": [{"word": "with", "tag": "giới từ", "tagClass": "tag-wrong-form", "meaning": "với"}, {"word": "at", "tag": "giới từ", "tagClass": "tag-wrong-form", "meaning": "ở tại"}, {"word": "from", "tag": "giới từ", "tagClass": "tag-wrong-form", "meaning": "từ"}, {"word": "on", "tag": "giới từ", "tagClass": "tag-correct", "meaning": "về chủ đề gì (tips on/for doing sth)", "isCorrectWord": true}], "rule": "Cấu trúc giới từ: tips on (doing) something", "whyCorrect": "Ta có cụm <strong>tips on + V-ing/Noun</strong> mang nghĩa <em>những mẹo, lời khuyên về việc gì</em>.", "whyWrong": "Các giới từ with, at, from không đi sau 'tips' để diễn đạt chủ đề của lời khuyên."}}, {"id": 12, "section": "PHẦN II: ĐỌC ĐIỀN QUẢNG CÁO - BUILD BETTER SLEEP HABITS!", "badge": "Từ loại (Word Form)", "question": "Question 12. The programme includes activities designed to reduce daytime (12) _____ and help you stay focused at school.", "options": [{"text": "drowsy", "isCorrect": false}, {"text": "drowsily", "isCorrect": false}, {"text": "drowsiness", "isCorrect": true}, {"text": "drowse", "isCorrect": false}], "explanation": {"trans": "Chương trình bao gồm các hoạt động được thiết kế để giảm cảm giác buồn ngủ ban ngày và giúp bạn duy trì sự tập trung tại trường.", "analysis": [{"word": "drowsy", "tag": "adj - uể oải, buồn ngủ", "tagClass": "tag-gram", "meaning": "buồn ngủ, lờ đờ (tính từ)"}, {"word": "drowsily", "tag": "adv - một cách uể oải", "tagClass": "tag-wrong-form", "meaning": "một cách uể oải (trạng từ)"}, {"word": "drowsiness", "tag": "n - cơn buồn ngủ, sự uể oải", "tagClass": "tag-correct", "meaning": "tình trạng buồn ngủ (danh từ)", "isCorrectWord": true}, {"word": "drowse", "tag": "v - ngủ gà ngủ gật", "tagClass": "tag-wrong-form", "meaning": "thiu thiu ngủ (động từ)"}], "rule": "Cụm danh từ: reduce + [Adj/Noun modifier] + Noun", "whyCorrect": "Sau ngoại động từ 'reduce' (giảm bớt) và từ bổ nghĩa 'daytime' (vào ban ngày), ta cần một <strong>Danh từ (Noun)</strong> làm tân ngữ. <strong>Daytime drowsiness</strong> = <em>chứng buồn ngủ vào ban ngày</em>.", "whyWrong": "<strong>drowsy</strong> là tính từ; <strong>drowsily</strong> là trạng từ; <strong>drowse</strong> là động từ nguyên mẫu."}}, {"id": 13, "section": "PHẦN II: ĐỌC ĐIỀN QUẢNG CÁO - BUILD BETTER SLEEP HABITS!", "badge": "Động từ khuyết thiếu (Modal Verbs)", "question": "Question 13. To avoid feeling tired the next morning, participants (13) _____ stay up too late the night before.", "options": [{"text": "don't have to", "isCorrect": false}, {"text": "shouldn't", "isCorrect": true}, {"text": "have to", "isCorrect": false}, {"text": "should", "isCorrect": false}], "explanation": {"trans": "Để tránh cảm thấy mệt mỏi vào sáng hôm sau, người tham gia không nên thức quá khuya vào đêm hôm trước.", "analysis": [{"word": "don't have to", "tag": "không bắt buộc", "tagClass": "tag-wrong-form", "meaning": "không cần phải làm gì"}, {"word": "shouldn't", "tag": "không nên", "tagClass": "tag-correct", "meaning": "không nên (lời khuyên tránh thức khuya)", "isCorrectWord": true}, {"word": "have to", "tag": "phải", "tagClass": "tag-wrong-form", "meaning": "phải thức khuya (ngược nghĩa hoàn toàn)"}, {"word": "should", "tag": "nên", "tagClass": "tag-wrong-form", "meaning": "nên thức khuya (ngược nghĩa hoàn toàn)"}], "rule": "Lời khuyên: shouldn't + V_bare (không nên làm gì)", "whyCorrect": "Mục đích là 'To avoid feeling tired' (để tránh mệt mỏi) thì giải pháp khuyên bảo là không nên thức khuya: <strong>shouldn't stay up too late</strong>.", "whyWrong": "<strong>should</strong> và <strong>have to</strong> mang nghĩa khuyên thức khuya (vô lý). <strong>don't have to</strong> mang nghĩa không bắt buộc thức khuya nhưng thức cũng được (sai mục đích tránh mệt mỏi)."}}, {"id": 14, "section": "PHẦN II: ĐỌC ĐIỀN QUẢNG CÁO - BUILD BETTER SLEEP HABITS!", "badge": "Thì Hiện tại hoàn thành với Since then", "question": "Question 14. Many students who joined our previous workshops (14) _____ positive changes in their sleep habits since then.", "options": [{"text": "reported", "isCorrect": false}, {"text": "were reporting", "isCorrect": false}, {"text": "report", "isCorrect": false}, {"text": "have reported", "isCorrect": true}], "explanation": {"trans": "Nhiều học sinh đã tham gia các buổi hội thảo trước đây của chúng tôi đã báo cáo những thay đổi tích cực trong thói quen ngủ của mình kể từ đó.", "analysis": [{"word": "reported", "tag": "Quá khứ đơn", "tagClass": "tag-wrong-form", "meaning": "hành động chấm dứt trong quá khứ"}, {"word": "were reporting", "tag": "Quá khứ tiếp diễn", "tagClass": "tag-wrong-form", "meaning": "đang báo cáo tại thời điểm quá khứ"}, {"word": "report", "tag": "Hiện tại đơn", "tagClass": "tag-wrong-form", "meaning": "thói quen ở hiện tại"}, {"word": "have reported", "tag": "Hiện tại hoàn thành", "tagClass": "tag-correct", "meaning": "hành động xảy ra kéo dài từ quá khứ đến nay đi với since then", "isCorrectWord": true}], "rule": "Dấu hiệu nhận biết thì Hiện tại hoàn thành: SINCE THEN (kể từ đó đến nay)", "whyCorrect": "Trong câu có trạng từ chỉ thời gian <strong>since then</strong> (kể từ mốc đó cho tới nay) → bắt buộc dùng <strong>Hiện tại hoàn thành (have reported)</strong>.", "whyWrong": "Các thì Quá khứ đơn (reported), Quá khứ tiếp diễn (were reporting) và Hiện tại đơn (report) đều không đi với cụm từ chỉ khoảng thời gian kéo dài 'since then'."}}, {"id": 15, "section": "PHẦN III: SẮP XẾP ĐOẠN HỘI THOẠI & ĐOẠN VĂN", "badge": "Sắp xếp hội thoại (Exchange)", "question": "Question 15. Sắp xếp các câu sau thành đoạn hội thoại hợp lý:\na. Daughter: I understand your concern, but I think I'm old enough to make some choices for myself.\nb. Mother: Because I sometimes worry that your choices are influenced too much by your friends rather than your own judgement.\nc. Daughter: Mum, why do you often question the decisions I make about my clothes and free time?", "options": [{"text": "b - a - c", "isCorrect": false}, {"text": "c - a - b", "isCorrect": false}, {"text": "a - c - b", "isCorrect": false}, {"text": "c - b - a", "isCorrect": true}], "explanation": {"trans": "c. Con gái hỏi mở đầu: 'Mẹ ơi, tại sao mẹ thường nghi ngờ những quyết định của con về quần áo và thời gian rảnh rỗi?'\nb. Mẹ giải thích lý do: 'Bởi vì đôi khi mẹ lo rằng lựa chọn của con bị bạn bè ảnh hưởng quá nhiều hơn là suy xét của chính con.'\na. Con gái giãi bày: 'Con hiểu nỗi lo của mẹ, nhưng con nghĩ con đã đủ lớn để tự đưa ra một số lựa chọn cho bản thân.'", "analysis": [{"word": "c - b - a", "tag": "Trật tự mạch lạc chuẩn", "tagClass": "tag-correct", "meaning": "Câu hỏi 'Why...?' (c) → Câu trả lời 'Because...' (b) → Lời hồi đáp 'I understand...' (a)", "isCorrectWord": true}, {"word": "b - a - c", "tag": "Sai trật tự", "tagClass": "tag-wrong-form", "meaning": "Không thể bắt đầu cuộc đối thoại bằng 'Because' khi chưa có câu hỏi"}, {"word": "c - a - b", "tag": "Sai trật tự", "tagClass": "tag-wrong-form", "meaning": "Câu (a) không trả lời cho câu hỏi (c)"}, {"word": "a - c - b", "tag": "Sai trật tự", "tagClass": "tag-wrong-form", "meaning": "Câu (a) không thể mở đầu một cách tự nhiên"}], "rule": "Logic đối thoại câu hỏi - câu trả lời: Why (c) → Because (b) → Phản hồi (a)", "whyCorrect": "Hội thoại bắt đầu bằng câu hỏi mở đầu từ người con (c) 'Mum, why...?'. Sau đó người mẹ giải thích lý do bắt đầu bằng (b) 'Because...'. Cuối cùng, người con ghi nhận sự quan tâm đó và nêu quan điểm (a) 'I understand your concern, but...'. Do đó thứ tự là <strong>c - b - a</strong>.", "whyWrong": "Các phương án khác làm đứt gãy tính liên kết logic câu hỏi - câu trả lời trong giao tiếp."}, "reading_passage": {"badge": "Dạng bài sắp xếp hội thoại & văn bản (Câu 15 - 17)", "title": "📝 Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement of utterances or sentences to make a cohesive and coherent exchange or text in each of the following questions.", "content": "\n        <p style=\"font-weight: 800; color: #2d3436; font-size: 1.05rem;\">Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement of utterances or sentences to make a cohesive and coherent exchange or text in each of the following questions from 15 to 17.</p>\n        "}}, {"id": 16, "section": "PHẦN III: SẮP XẾP ĐOẠN HỘI THOẠI & ĐOẠN VĂN", "badge": "Sắp xếp thư từ (Letter)", "question": "Question 16. Sắp xếp các câu sau thành một bức thư hoàn chỉnh:\nDear Alex,\na. Besides eating properly, taking short walks every day has helped me feel more energetic.\nb. Thanks for asking how I managed to improve my well-being over the past few months.\nc. I hope these suggestions will help you build healthier habits of your own.\nd. The biggest change was cutting down on processed food and preparing more meals at home.\ne. I've also stopped skipping breakfast, which used to leave me exhausted before lunchtime.\nBest wishes,\nTom", "options": [{"text": "b - e - d - a - c", "isCorrect": false}, {"text": "d - b - e - a - c", "isCorrect": false}, {"text": "b - d - e - a - c", "isCorrect": true}, {"text": "b - a - c - e - d", "isCorrect": false}], "explanation": {"trans": "b. Lời mở đầu cảm ơn: Cảm ơn cậu đã hỏi thăm tớ cải thiện sức khỏe thế nào trong vài tháng qua.\nd. Thay đổi quan trọng nhất: Thay đổi lớn nhất là giảm đồ ăn chế biến sẵn và nấu ăn tại nhà.\ne. Thêm một thói quen ăn uống khác: Tớ cũng ngừng bỏ bữa sáng (stopped skipping breakfast).\na. Chuyển sang vận động: Bên cạnh việc ăn uống điều độ (Besides eating properly), việc đi dạo mỗi ngày giúp tớ tràn đầy năng lượng.\nc. Lời kết thư: Tớ hy vọng những gợi ý này sẽ giúp cậu xây dựng thói quen lành mạnh cho riêng mình.", "analysis": [{"word": "b - d - e - a - c", "tag": "Trật tự hoàn hảo", "tagClass": "tag-correct", "meaning": "Mở đầu (b) → Ý chính 1 ăn uống (d) → Ý bổ sung ăn uống (e) → Chuyển tiếp 'Besides eating properly' sang đi bộ (a) → Lời kết (c)", "isCorrectWord": true}, {"word": "b - e - d - a - c", "tag": "Sai liên kết", "tagClass": "tag-wrong-form", "meaning": "'The biggest change' (d) phải nêu trước thói quen phụ (e)"}, {"word": "d - b - e - a - c", "tag": "Thiếu mở đầu", "tagClass": "tag-wrong-form", "meaning": "Không thể chưa chào hỏi cảm ơn mà đã nói thay đổi lớn nhất"}, {"word": "b - a - c - e - d", "tag": "Đứt gãy lời kết", "tagClass": "tag-wrong-form", "meaning": "Lời chúc kết (c) bị đặt ở giữa bức thư"}], "rule": "Cấu trúc thư thân mật: Lời cảm ơn/mở bài (b) → Triển khai ý chính ăn uống (d, e) → Chuyển ý vận động (a) → Lời kết (c)", "whyCorrect": "Câu mở đầu bức thư bắt buộc là (b) 'Thanks for asking...'. Tiếp theo, (d) nêu thay đổi lớn nhất về ăn uống 'The biggest change was...'. Sau đó (e) bổ sung thêm 'I've also...'. Câu (a) có từ nối 'Besides eating properly' (bên cạnh việc ăn uống chuẩn chỉ) để dẫn sang việc đi bộ. Cuối cùng câu (c) kết thư trước 'Best wishes'. Trật tự đúng: <strong>b - d - e - a - c</strong>.", "whyWrong": "Các phương án khác làm đảo lộn vị trí câu kết (c) hoặc tách rời liên từ chuyển tiếp 'Besides eating properly' khỏi các câu nói về ăn uống."}}, {"id": 17, "section": "PHẦN III: SẮP XẾP ĐOẠN HỘI THOẠI & ĐOẠN VĂN", "badge": "Sắp xếp đoạn văn nghị luận", "question": "Question 17. Sắp xếp các câu sau thành một đoạn văn hoàn chỉnh:\na. This can make young people feel that their opinions and personal preferences are being ignored.\nb. Open-minded discussions can therefore help both generations understand each other more clearly.\nc. Differences in family values can create tension between older and younger generations.\nd. Instead of rejecting unfamiliar viewpoints immediately, both sides can listen and explain their reasons calmly.\ne. Older family members, for instance, may expect the younger generation to follow traditional customs without question.", "options": [{"text": "c - a - e - d - b", "isCorrect": false}, {"text": "e - c - a - b - d", "isCorrect": false}, {"text": "c - d - e - a - b", "isCorrect": false}, {"text": "c - e - a - d - b", "isCorrect": true}], "explanation": {"trans": "c. Câu chủ đề: Sự khác biệt về các giá trị gia đình có thể tạo ra căng thẳng giữa thế hệ lớn tuổi và thế hệ trẻ.\ne. Ví dụ chứng minh: Chẳng hạn, các thành viên lớn tuổi trong gia đình có thể kỳ vọng thế hệ trẻ tuân theo các phong tục truyền thống mà không hề thắc mắc.\na. Hậu quả của ví dụ trên: Điều này (This) có thể khiến người trẻ cảm thấy ý kiến và sở thích cá nhân của mình đang bị phớt lờ.\nd. Giải pháp: Thay vì từ chối các quan điểm xa lạ ngay lập tức, cả hai bên có thể lắng nghe và giải thích lý do của mình một cách bình tĩnh.\nb. Kết luận: Do đó (therefore), các cuộc thảo luận cởi mở có thể giúp cả hai thế hệ hiểu nhau rõ ràng hơn.", "analysis": [{"word": "c - e - a - d - b", "tag": "Trật tự chuẩn xác", "tagClass": "tag-correct", "meaning": "Topic sentence (c) → Ví dụ (e) → Hậu quả của ví dụ (a) → Giải pháp (d) → Kết luận (b)", "isCorrectWord": true}, {"word": "c - a - e - d - b", "tag": "Sai đại từ thay thế", "tagClass": "tag-wrong-form", "meaning": "Đại từ 'This' ở (a) phải thay thế cho hành động ở câu ví dụ (e)"}, {"word": "e - c - a - b - d", "tag": "Thiếu câu chủ đề", "tagClass": "tag-wrong-form", "meaning": "Không thể bắt đầu bằng câu ví dụ 'Older family members, for instance'"}, {"word": "c - d - e - a - b", "tag": "Đưa giải pháp quá sớm", "tagClass": "tag-wrong-form", "meaning": "Chưa nêu ví dụ và nguyên nhân căng thẳng đã đưa giải pháp (d)"}], "rule": "Cấu trúc đoạn văn chuẩn: Topic sentence → Example → Effect → Solution → Concluding sentence", "whyCorrect": "Câu (c) nêu luận điểm chung về xung đột thế hệ. Câu (e) đưa ví dụ cụ thể 'for instance'. Đại từ 'This' ở câu (a) liên kết chặt chẽ với điều được nêu ở câu (e). Câu (d) đề xuất cách xử lý và câu (b) dùng 'therefore' để đúc kết giải pháp. Trật tự chuẩn: <strong>c - e - a - d - b</strong>.", "whyWrong": "Các trật tự khác làm mất liên kết đại từ chỉ xuất (This) hoặc đưa ví dụ 'for instance' lên đầu đoạn văn."}}, {"id": 18, "section": "PHẦN IV: ĐỌC ĐIỀN ĐOẠN VĂN - LIVING WITH GENERATIONAL DIFFERENCES", "badge": "Điền mệnh đề / Cụm thành ngữ", "question": "Question 18. Such contrasting attitudes (18) _____, particularly when neither side is willing to consider a different point of view.", "options": [{"text": "may give rise to disagreements between people of different age groups", "isCorrect": true}, {"text": "may take the place of disagreements between people of different age groups", "isCorrect": false}, {"text": "may keep pace with disagreements between people of different age groups", "isCorrect": false}, {"text": "may make use of disagreements between people of different age groups", "isCorrect": false}], "explanation": {"trans": "Những thái độ trái ngược như vậy có thể làm nảy sinh bất đồng giữa những người thuộc các nhóm tuổi khác nhau, đặc biệt là khi không bên nào chịu lắng nghe quan điểm khác.", "analysis": [{"word": "give rise to", "tag": "collocation = cause", "tagClass": "tag-correct", "meaning": "làm nảy sinh, gây ra (give rise to disagreements)", "isCorrectWord": true}, {"word": "take the place of", "tag": "idiom = replace", "tagClass": "tag-gram", "meaning": "thay thế cho"}, {"word": "keep pace with", "tag": "idiom", "tagClass": "tag-gram", "meaning": "bắt kịp với"}, {"word": "make use of", "tag": "idiom", "tagClass": "tag-gram", "meaning": "tận dụng, sử dụng"}], "rule": "Cụm thành ngữ cố định: give rise to something (làm nảy sinh, gây ra cái gì)", "whyCorrect": "Cụm <strong>give rise to disagreements</strong> = <em>cause disagreements</em> (gây ra/làm nảy sinh bất đồng).", "whyWrong": "take the place of (thay thế), keep pace with (theo kịp), make use of (tận dụng) không phù hợp về ngữ nghĩa với thái độ trái ngược gây ra bất đồng."}, "reading_passage": {"badge": "Đoạn văn đọc điền (Câu 18 - 22)", "title": "📖 Read the following passage and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.\nLIVING WITH GENERATIONAL DIFFERENCES", "content": "\n        <p style=\"font-style: italic; color: #636e72; margin-bottom: 12px; font-weight: 700;\">Read the following passage and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.</p>\n        <div style=\"text-align: center; font-size: 1.3rem; font-weight: 900; color: #6c5ce7; margin-bottom: 12px; letter-spacing: 1px;\">LIVING WITH GENERATIONAL DIFFERENCES</div>\n        <p>Differences between generations are hardly new, but rapid social change has made them more noticeable. Younger people are generally more willing to adopt emerging trends, whereas older generations may place greater value on established ways of life. Such contrasting attitudes <strong>(18) _____</strong>, particularly when neither side is willing to consider a different point of view.</p>\n        <p>Technology provides a clear example. Over the past decade, <strong>(19) _____</strong>, while many older adults became familiar with these platforms much later in life. As a result, the two age groups may have different expectations about how information should be shared.</p>\n        <p>Differences may also arise over responsibilities at home. Although young people need time for study and other commitments, <strong>(20) _____</strong> if they want to contribute fairly to the household. Adults, meanwhile, should recognise the demands placed on younger people.</p>\n        <p>Nevertheless, differences between age groups can provide opportunities for learning. When people listen rather than immediately criticise unfamiliar views, greater <strong>(21) _____</strong>. Older people can share valuable experience, while younger people can introduce fresh ideas. Through such exchanges, people of different ages can gradually <strong>(22) _____</strong>.</p>\n        "}}, {"id": 19, "section": "PHẦN IV: ĐỌC ĐIỀN ĐOẠN VĂN - LIVING WITH GENERATIONAL DIFFERENCES", "badge": "Thì và mệnh đề độc lập với Over the past decade", "question": "Question 19. Over the past decade, (19) _____, while many older adults became familiar with these platforms much later in life.", "options": [{"text": "social media became a major means of communication among young people", "isCorrect": false}, {"text": "social media has become an important part of young people's daily communication", "isCorrect": true}, {"text": "young people were increasingly dependent on social media for their daily communication", "isCorrect": false}, {"text": "young people had become increasingly reliant on social media for daily communication", "isCorrect": false}], "explanation": {"trans": "Trong suốt thập kỷ qua, mạng xã hội đã trở thành một phần quan trọng trong giao tiếp hàng ngày của giới trẻ, trong khi nhiều người lớn tuổi chỉ làm quen với các nền tảng này muộn hơn nhiều.", "analysis": [{"word": "has become", "tag": "Hiện tại hoàn thành", "tagClass": "tag-correct", "meaning": "chuẩn thì với trạng từ 'Over the past decade'", "isCorrectWord": true}, {"word": "became", "tag": "Quá khứ đơn", "tagClass": "tag-wrong-form", "meaning": "sai thì với 'Over the past decade'"}, {"word": "were increasingly", "tag": "Quá khứ đơn", "tagClass": "tag-wrong-form", "meaning": "sai thì với 'Over the past decade'"}, {"word": "had become", "tag": "Quá khứ hoàn thành", "tagClass": "tag-wrong-form", "meaning": "sai thì quá khứ hoàn thành khi không có mốc trước quá khứ"}], "rule": "Dấu hiệu thì: Over the past decade / in the last decade + Thì Hiện tại hoàn thành", "whyCorrect": "Trạng ngữ <strong>Over the past decade</strong> (trong suốt một thập kỷ qua) chỉ khoảng thời gian kéo dài tới hiện tại → động từ chính phải chia ở <strong>Hiện tại hoàn thành (has become)</strong>.", "whyWrong": "Các phương án A, C chia quá khứ đơn (became, were), phương án D chia quá khứ hoàn thành (had become) đều sai quy tắc ngữ pháp."}}, {"id": 20, "section": "PHẦN IV: ĐỌC ĐIỀN ĐOẠN VĂN - LIVING WITH GENERATIONAL DIFFERENCES", "badge": "Động từ khuyết thiếu và mệnh đề điều kiện", "question": "Question 20. Although young people need time for study and other commitments, (20) _____ if they want to contribute fairly to the household.", "options": [{"text": "they don't have to take on a fair share of household responsibilities", "isCorrect": false}, {"text": "they mustn't take on a fair share of household responsibilities themselves", "isCorrect": false}, {"text": "they should take on a fair share of household responsibilities when possible", "isCorrect": true}, {"text": "they had to take on a fair share of household responsibilities when possible", "isCorrect": false}], "explanation": {"trans": "Mặc dù thanh thiếu niên cần thời gian cho việc học và các cam kết khác, các em nên đảm nhận một phần trách nhiệm việc nhà hợp lý khi có thể nếu muốn đóng góp công bằng cho gia đình.", "analysis": [{"word": "should take on", "tag": "lời khuyên nên làm", "tagClass": "tag-correct", "meaning": "nên gánh vác trách nhiệm (hợp lý về nghĩa và ngữ cảnh)", "isCorrectWord": true}, {"word": "don't have to", "tag": "không phải gánh vác", "tagClass": "tag-wrong-form", "meaning": "trái nghĩa với vế điều kiện 'if they want to contribute'"}, {"word": "mustn't", "tag": "không được phép", "tagClass": "tag-wrong-form", "meaning": "cấm đoán (vô lý)"}, {"word": "had to", "tag": "đã phải (quá khứ)", "tagClass": "tag-wrong-form", "meaning": "sai thì quá khứ đơn trong câu hiện tại"}], "rule": "Collocation: take on responsibilities & Lời khuyên 'should'", "whyCorrect": "Mệnh đề điều kiện là 'if they want to contribute' (nếu muốn đóng góp) và vế trước 'Although...' chỉ sự nhượng bộ → lời khuyên hợp lý là <strong>they should take on a fair share...</strong>.", "whyWrong": "A và B dùng phủ định không phù hợp với mục đích đóng góp cho gia đình; D dùng thì quá khứ 'had to' không phù hợp với ngữ cảnh hiện tại."}}, {"id": 21, "section": "PHẦN IV: ĐỌC ĐIỀN ĐOẠN VĂN - LIVING WITH GENERATIONAL DIFFERENCES", "badge": "Cấu trúc ngữ pháp sau tính từ Greater", "question": "Question 21. When people listen rather than immediately criticise unfamiliar views, greater (21) _____.", "options": [{"text": "tolerant attitudes towards opposing views can develop through regular communication", "isCorrect": false}, {"text": "tolerantly responding to opposing views can develop through regular communication", "isCorrect": false}, {"text": "tolerance of opposing views can develop through regular communication", "isCorrect": true}, {"text": "tolerate opposing views more easily can develop through regular communication", "isCorrect": false}], "explanation": {"trans": "Khi mọi người lắng nghe thay vì ngay lập tức chỉ trích những quan điểm xa lạ, sự khoan dung lớn hơn đối với các quan điểm đối lập có thể phát triển thông qua giao tiếp thường xuyên.", "analysis": [{"word": "greater tolerance of...", "tag": "Adj + Noun phrase", "tagClass": "tag-correct", "meaning": "greater + danh từ không đếm được 'tolerance' làm chủ ngữ", "isCorrectWord": true}, {"word": "greater tolerant attitudes", "tag": "sai ngữ pháp tính từ ghép", "tagClass": "tag-wrong-form", "meaning": "greater không đứng trước trực tiếp tính từ tolerant"}, {"word": "greater tolerantly", "tag": "sai ngữ pháp", "tagClass": "tag-wrong-form", "meaning": "greater không bổ nghĩa cho trạng từ tolerantly"}, {"word": "greater tolerate", "tag": "sai ngữ pháp", "tagClass": "tag-wrong-form", "meaning": "greater không bổ nghĩa cho động từ nguyên mẫu"}], "rule": "Trật tự từ: Tính từ so sánh 'greater' + Danh từ (Noun)", "whyCorrect": "Sau tính từ 'greater', ta cần một danh từ để làm cụm chủ ngữ cho động từ 'can develop'. Danh từ là <strong>tolerance</strong> (sự khoan dung/chấp nhận sự khác biệt). Cụm hoàn chỉnh: <em>greater tolerance of opposing views can develop...</em>.", "whyWrong": "Các phương án khác ghép 'greater' với tính từ (tolerant), trạng từ (tolerantly) hoặc động từ (tolerate) đều vi phạm ngữ pháp cơ bản."}}, {"id": 22, "section": "PHẦN IV: ĐỌC ĐIỀN ĐOẠN VĂN - LIVING WITH GENERATIONAL DIFFERENCES", "badge": "Cụm thành ngữ chủ đề Thế hệ (Generation Gap)", "question": "Question 22. Through such exchanges, people of different ages can gradually (22) _____.", "options": [{"text": "preserve the beliefs that separate one generation from another", "isCorrect": false}, {"text": "avoid the issues that often cause disagreement between generations", "isCorrect": false}, {"text": "strengthen the differences that exist between younger and older people", "isCorrect": false}, {"text": "bridge the generation gap and develop greater mutual understanding", "isCorrect": true}], "explanation": {"trans": "Thông qua những cuộc trao đổi như vậy, những người ở các độ tuổi khác nhau có thể dần dần thu hẹp khoảng cách thế hệ và phát triển sự thấu hiểu lẫn nhau tốt hơn.", "analysis": [{"word": "bridge the generation gap", "tag": "idiom đắt giá Unit 2", "tagClass": "tag-correct", "meaning": "thu hẹp/vượt qua khoảng cách thế hệ", "isCorrectWord": true}, {"word": "preserve the beliefs...", "tag": "bảo tồn niềm tin gây chia rẽ", "tagClass": "tag-wrong-form", "meaning": "ngược với ý nghĩa tích cực của bài"}, {"word": "avoid the issues...", "tag": "tránh né vấn đề", "tagClass": "tag-gram", "meaning": "không giải quyết được gốc rễ"}, {"word": "strengthen the differences", "tag": "làm sâu sắc thêm sự khác biệt", "tagClass": "tag-wrong-form", "meaning": "làm mâu thuẫn trầm trọng thêm"}], "rule": "Collocation chuẩn chủ đề: bridge the generation gap (thu hẹp khoảng cách thế hệ)", "whyCorrect": "Thông qua việc giao lưu chia sẻ kinh nghiệm và ý tưởng mới, các thế hệ sẽ <strong>bridge the generation gap and develop greater mutual understanding</strong> (thu hẹp khoảng cách thế hệ và hiểu nhau hơn).", "whyWrong": "A (chia rẽ thế hệ) và C (tăng thêm khác biệt) mang nghĩa tiêu cực; B (né tránh vấn đề) không phản ánh việc trao đổi học hỏi lẫn nhau."}}, {"id": 23, "section": "PHẦN V: ĐỌC ĐIỀN TỜ RƠI - CREATING A HAPPIER HOME", "badge": "Chia thì với In recent years", "question": "Question 23. In recent years, many families (23) _____ simple strategies for creating a more comfortable home environment.", "options": [{"text": "were adopting", "isCorrect": false}, {"text": "adopted", "isCorrect": false}, {"text": "have adopted", "isCorrect": true}, {"text": "had adopted", "isCorrect": false}], "explanation": {"trans": "Trong những năm gần đây, nhiều gia đình đã áp dụng các chiến lược đơn giản để tạo ra một môi trường sống gia đình thoải mái hơn.", "analysis": [{"word": "were adopting", "tag": "Quá khứ tiếp diễn", "tagClass": "tag-wrong-form", "meaning": "đang diễn ra tại một thời điểm quá khứ"}, {"word": "adopted", "tag": "Quá khứ đơn", "tagClass": "tag-wrong-form", "meaning": "hành động kết thúc trong quá khứ"}, {"word": "have adopted", "tag": "Hiện tại hoàn thành", "tagClass": "tag-correct", "meaning": "chuẩn thì đi với trạng từ 'In recent years'", "isCorrectWord": true}, {"word": "had adopted", "tag": "Quá khứ hoàn thành", "tagClass": "tag-wrong-form", "meaning": "xảy ra trước một hành động quá khứ khác"}], "rule": "Dấu hiệu nhận biết thì: In recent years / lately / recently + Hiện tại hoàn thành", "whyCorrect": "Cụm từ <strong>In recent years</strong> (trong những năm gần đây) là dấu hiệu điển hình của thì <strong>Hiện tại hoàn thành (have adopted)</strong>.", "whyWrong": "Các thì quá khứ không diễn tả được hành động bắt đầu trong những năm gần đây và vẫn còn tiếp diễn ảnh hưởng đến hiện tại."}, "reading_passage": {"badge": "Tờ rơi đọc điền (Câu 23 - 27)", "title": "🏡 Read the following leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 23 to 27.\nCREATING A HAPPIER HOME", "content": "\n        <p style=\"font-style: italic; color: #636e72; margin-bottom: 12px; font-weight: 700;\">Read the following leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 23 to 27.</p>\n        <div style=\"text-align: center; font-size: 1.3rem; font-weight: 900; color: #00b894; margin-bottom: 12px; letter-spacing: 1px;\">CREATING A HAPPIER HOME</div>\n        <p>Living under the same roof is not always easy. As children grow older, they often want more personal space, while their parents may still feel the need to guide them. In recent years, many families <strong>(23) _____</strong> simple strategies for creating a more comfortable home environment.</p>\n        <p>One useful approach is to set clear <strong>(24) _____</strong> for everyday matters such as screen time, going out, and coming home late. Everyone then knows what is expected, and unnecessary arguments can be avoided.</p>\n        <p>Parents <strong>(25) _____</strong> respect their children's privacy as they become older. For example, knocking before entering a bedroom shows consideration for personal space. <strong>(26) _____</strong> parents should respect their children's privacy, teenagers also need to follow reasonable limits at home.</p>\n        <p>These small actions can encourage greater <strong>(27) _____</strong> and help everyone feel valued and respected.</p>\n        "}}, {"id": 24, "section": "PHẦN V: ĐỌC ĐIỀN TỜ RƠI - CREATING A HAPPIER HOME", "badge": "Từ vựng / Collocation Unit 2", "question": "Question 24. One useful approach is to set clear (24) _____ for everyday matters such as screen time, going out, and coming home late.", "options": [{"text": "boundaries", "isCorrect": true}, {"text": "influences", "isCorrect": false}, {"text": "experiences", "isCorrect": false}, {"text": "characteristics", "isCorrect": false}], "explanation": {"trans": "Một phương pháp hữu ích là đặt ra các ranh giới/quy tắc rõ ràng cho các vấn đề hàng ngày như thời gian dùng màn hình, đi ra ngoài và về nhà muộn.", "analysis": [{"word": "boundaries", "tag": "n - ranh giới, quy tắc giới hạn", "tagClass": "tag-correct", "meaning": "ranh giới (cụm: set clear boundaries)", "isCorrectWord": true}, {"word": "influences", "tag": "n - sự ảnh hưởng", "tagClass": "tag-gram", "meaning": "sự tác động, ảnh hưởng"}, {"word": "experiences", "tag": "n - kinh nghiệm, trải nghiệm", "tagClass": "tag-gram", "meaning": "trải nghiệm"}, {"word": "characteristics", "tag": "n - đặc điểm", "tagClass": "tag-gram", "meaning": "đặc tính, tính chất"}], "rule": "Collocation: set clear boundaries (đặt ra ranh giới / giới hạn rõ ràng)", "whyCorrect": "Cụm <strong>set clear boundaries</strong> là thuật ngữ quen thuộc trong việc nuôi dạy con, nghĩa là đặt ra các giới hạn, quy tắc rõ ràng.", "whyWrong": "Người ta không nói 'set clear influences' (đặt ảnh hưởng), 'set clear experiences' (đặt trải nghiệm) hay 'set clear characteristics'."}}, {"id": 25, "section": "PHẦN V: ĐỌC ĐIỀN TỜ RƠI - CREATING A HAPPIER HOME", "badge": "Động từ khuyết thiếu (Modal Verbs)", "question": "Question 25. Parents (25) _____ respect their children's privacy as they become older. For example, knocking before entering a bedroom shows consideration for personal space.", "options": [{"text": "don't have to", "isCorrect": false}, {"text": "mustn't", "isCorrect": false}, {"text": "has to", "isCorrect": false}, {"text": "should", "isCorrect": true}], "explanation": {"trans": "Cha mẹ nên tôn trọng sự riêng tư của con cái khi các em lớn lên. Ví dụ, gõ cửa trước khi vào phòng ngủ thể hiện sự tôn trọng không gian cá nhân.", "analysis": [{"word": "don't have to", "tag": "không phải", "tagClass": "tag-wrong-form", "meaning": "không bắt buộc (sai ý khuyên)"}, {"word": "mustn't", "tag": "không được phép", "tagClass": "tag-wrong-form", "meaning": "cấm đoán (sai ngữ nghĩa)"}, {"word": "has to", "tag": "phải (chia số ít)", "tagClass": "tag-wrong-form", "meaning": "sai ngữ pháp (chủ ngữ Parents số nhiều)"}, {"word": "should", "tag": "nên", "tagClass": "tag-correct", "meaning": "lời khuyên về cách ứng xử văn minh trong gia đình", "isCorrectWord": true}], "rule": "Lời khuyên: should + V_nguyên thể", "whyCorrect": "Câu này đưa ra lời khuyên ứng xử tốt đẹp trong gia đình (gõ cửa trước khi vào phòng con) → dùng <strong>should</strong>.", "whyWrong": "<strong>has to</strong> sai ngữ pháp với chủ ngữ số nhiều 'Parents'. <strong>don't have to</strong> và <strong>mustn't</strong> sai hoàn toàn về ý nghĩa."}}, {"id": 26, "section": "PHẦN V: ĐỌC ĐIỀN TỜ RƠI - CREATING A HAPPIER HOME", "badge": "Liên từ nhượng bộ (Conjunctions)", "question": "Question 26. (26) _____ parents should respect their children's privacy, teenagers also need to follow reasonable limits at home.", "options": [{"text": "Unless", "isCorrect": false}, {"text": "Although", "isCorrect": true}, {"text": "Because", "isCorrect": false}, {"text": "So", "isCorrect": false}], "explanation": {"trans": "Mặc dù cha mẹ nên tôn trọng sự riêng tư của con cái, thanh thiếu niên cũng cần tuân theo những giới hạn hợp lý ở nhà.", "analysis": [{"word": "Unless", "tag": "trừ khi (= if not)", "tagClass": "tag-wrong-form", "meaning": "nếu không, trừ khi"}, {"word": "Although", "tag": "mặc dù (liên từ nhượng bộ)", "tagClass": "tag-correct", "meaning": "mặc dù (chỉ mối quan hệ tương phản hai chiều)", "isCorrectWord": true}, {"word": "Because", "tag": "bởi vì (chỉ nguyên nhân)", "tagClass": "tag-wrong-form", "meaning": "bởi vì"}, {"word": "So", "tag": "vì vậy (chỉ kết quả)", "tagClass": "tag-wrong-form", "meaning": "cho nên, vì vậy"}], "rule": "Mệnh đề trạng ngữ chỉ sự nhượng bộ: Although + Clause 1, Clause 2", "whyCorrect": "Hai vế thể hiện nghĩa nhượng bộ tương phản hai chiều: Một mặt cha mẹ tôn trọng con, mặt khác con cũng phải tôn trọng giới hạn → dùng liên từ <strong>Although</strong> (Mặc dù).", "whyWrong": "<strong>Because</strong> chỉ nguyên nhân (sai logic); <strong>Unless</strong> mang nghĩa điều kiện phủ định; <strong>So</strong> không đứng đầu câu nối hai mệnh đề như trên."}}, {"id": 27, "section": "PHẦN V: ĐỌC ĐIỀN TỜ RƠI - CREATING A HAPPIER HOME", "badge": "Từ loại (Word Form)", "question": "Question 27. These small actions can encourage greater (27) _____ and help everyone feel valued and respected.", "options": [{"text": "responsibly", "isCorrect": false}, {"text": "irresponsible", "isCorrect": false}, {"text": "responsibility", "isCorrect": true}, {"text": "responsible", "isCorrect": false}], "explanation": {"trans": "Những hành động nhỏ này có thể khuyến khích tinh thần trách nhiệm cao hơn và giúp mọi người cảm thấy được trân trọng và tôn trọng.", "analysis": [{"word": "responsibly", "tag": "adv - một cách có trách nhiệm", "tagClass": "tag-wrong-form", "meaning": "trạng từ"}, {"word": "irresponsible", "tag": "adj - vô trách nhiệm", "tagClass": "tag-wrong-form", "meaning": "tính từ mang nghĩa phủ định"}, {"word": "responsibility", "tag": "n - tinh thần trách nhiệm", "tagClass": "tag-correct", "meaning": "tinh thần trách nhiệm, sự trách nhiệm (danh từ)", "isCorrectWord": true}, {"word": "responsible", "tag": "adj - có trách nhiệm", "tagClass": "tag-gram", "meaning": "tính từ"}], "rule": "Vị trí của Danh từ sau Tính từ so sánh: greater + Noun", "whyCorrect": "Sau động từ 'encourage' và tính từ so sánh 'greater', ta cần một <strong>Danh từ (Noun)</strong> làm tân ngữ. Danh từ tương ứng là <strong>responsibility</strong>.", "whyWrong": "<strong>responsible</strong> và <strong>irresponsible</strong> là tính từ; <strong>responsibly</strong> là trạng từ."}}, {"id": 28, "section": "PHẦN VI: BÀI ĐỌC HIỂU - SOCIAL CONNECTIONS & LONGEVITY", "badge": "Đọc hiểu ý chính đoạn văn (Main Idea)", "question": "Question 28. In paragraph 1, the writer is _____.", "options": [{"text": "questioning the importance of medical advances in extending human lifespan", "isCorrect": false}, {"text": "comparing different scientific explanations for extending the human lifespan", "isCorrect": false}, {"text": "introducing social connection as a factor associated with greater longevity", "isCorrect": true}, {"text": "examining the difficulty of measuring social relationships in long-term studies", "isCorrect": false}], "explanation": {"trans": "Trong đoạn 1, người viết đang giới thiệu sự kết nối xã hội như một yếu tố liên quan đến tuổi thọ cao hơn.", "analysis": [{"word": "introducing social connection...", "tag": "Khớp 100% dẫn chứng", "tagClass": "tag-correct", "meaning": "giới thiệu yếu tố kết nối xã hội liên quan đến tuổi thọ", "isCorrectWord": true}, {"word": "questioning medical advances", "tag": "sai ý", "tagClass": "tag-wrong-form", "meaning": "nghi ngờ tầm quan trọng của tiến bộ y tế"}, {"word": "comparing scientific explanations", "tag": "sai ý", "tagClass": "tag-wrong-form", "meaning": "so sánh các lời giải thích khoa học khác nhau"}, {"word": "examining difficulty of measuring", "tag": "không đề cập", "tagClass": "tag-wrong-form", "meaning": "xem xét độ khó khi đo lường mối quan hệ"}], "rule": "Dẫn chứng Paragraph 1: 'researchers have turned their attention to a less obvious factor: social connection. Evidence... suggests that people who maintain meaningful relationships tend to live longer'", "whyCorrect": "Đoạn 1 nêu: các nhà nghiên cứu đã hướng sự chú ý đến mối quan hệ xã hội (social connection) và thấy rằng người có mối quan hệ ý nghĩa có xu hướng sống thọ hơn → Tác giả đang giới thiệu mối liên hệ này.", "whyWrong": "Tác giả không nghi ngờ tiến bộ y học, không đi so sánh nhiều lý thuyết cũng như không bàn về khó khăn khi đo lường."}, "reading_passage": {"badge": "Bài đọc hiểu chuyên sâu (Câu 28 - 35)", "title": "🌱 Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 28 to 35.\nSOCIAL CONNECTION & LONGEVITY", "content": "\n        <p style=\"font-style: italic; color: #636e72; margin-bottom: 12px; font-weight: 700;\">Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 28 to 35.</p>\n        <div style=\"text-align: center; font-size: 1.3rem; font-weight: 900; color: #e84393; margin-bottom: 12px; letter-spacing: 1px;\">SOCIAL CONNECTION & LONGEVITY</div>\n        <p><strong>[Paragraph 1]</strong> For many years, discussions about living longer focused mainly on medical advances and individual behaviour. More recently, however, researchers have turned their attention to a less obvious factor: social connection. Evidence from long-term studies suggests that people who maintain meaningful relationships tend to live longer than those who remain socially isolated. This finding does not mean that strong social ties can guarantee a longer life, but it has encouraged scientists to examine more closely how human relationships affect the body over time.</p>\n        <p><strong>[Paragraph 2]</strong> One explanation concerns the way people respond to pressure. Difficult experiences can place considerable strain on both the mind and body, especially when an individual faces them alone. Having someone to talk to may make challenging situations feel more manageable. In addition, close companions often encourage one another to seek professional help when necessary or avoid harmful behaviour. Researchers therefore argue that supportive relationships may protect people through several pathways rather than through a single biological mechanism. <u>In other words, their value may lie not only in emotional comfort but also in the practical support they provide.</u></p>\n        <p><strong>[Paragraph 3]</strong> The quality of relationships, however, appears to matter more than their number. A person surrounded by acquaintances may still experience loneliness, whereas someone with only a few dependable companions may feel genuinely connected. Researchers describe strong relationships as those involving trust, emotional security and a willingness to offer assistance when difficulties arise. Such connections can be particularly <strong>beneficial</strong> in later life, when retirement, bereavement or reduced mobility may make regular social contact harder to maintain.</p>\n        <p><strong>[Paragraph 4]</strong> This does not mean that people should force themselves to become highly sociable. Some individuals naturally prefer a smaller social circle, and solitude itself is not necessarily harmful. The greater concern is <strong>involuntary</strong> isolation — wanting meaningful contact but being unable to obtain it. For this reason, some local communities have introduced social programmes that bring older residents together through shared interests and local activities. <strong>These</strong> are not a substitute for medical care, but they reflect a broader recognition that human connection deserves attention alongside other influences on longevity. The evidence is still developing, yet it increasingly suggests that a long life may depend partly on the relationships people are able to sustain.</p>\n        "}}, {"id": 29, "section": "PHẦN VI: BÀI ĐỌC HIỂU - SOCIAL CONNECTIONS & LONGEVITY", "badge": "Đại từ quy chiếu (Reference Question)", "question": "Question 29. The word These in paragraph 4 refers to _____.", "options": [{"text": "local communities", "isCorrect": false}, {"text": "social programmes", "isCorrect": true}, {"text": "older residents", "isCorrect": false}, {"text": "shared interests", "isCorrect": false}], "explanation": {"trans": "Từ 'These' trong đoạn 4 ám chỉ điều gì?", "analysis": [{"word": "local communities", "tag": "danh từ", "tagClass": "tag-wrong-form", "meaning": "các cộng đồng địa phương"}, {"word": "social programmes", "tag": "danh từ số nhiều được thay thế", "tagClass": "tag-correct", "meaning": "các chương trình xã hội", "isCorrectWord": true}, {"word": "older residents", "tag": "danh từ", "tagClass": "tag-wrong-form", "meaning": "người cao tuổi"}, {"word": "shared interests", "tag": "danh từ", "tagClass": "tag-wrong-form", "meaning": "những sở thích chung"}], "rule": "Dẫn chứng Paragraph 4: '...some local communities have introduced social programmes that bring older residents together through shared interests and local activities. These are not a substitute for medical care...'", "whyCorrect": "Từ 'These' đứng ngay sau câu nhắc đến 'social programmes' và đóng vai trò làm chủ ngữ cho 'are not a substitute for medical care' (Các chương trình này không thay thế cho chăm sóc y tế) → <strong>These = social programmes</strong>.", "whyWrong": "Cộng đồng (communities) hay cư dân (residents) hay sở thích (interests) không phải là thứ 'được dùng thay thế cho việc chăm sóc y tế'."}}, {"id": 30, "section": "PHẦN VI: BÀI ĐỌC HIỂU - SOCIAL CONNECTIONS & LONGEVITY", "badge": "Viết lại câu / Paraphrasing", "question": "Question 30. Câu nào diễn giải đúng nhất câu được gạch chân ở đoạn 2: 'In other words, their value may lie not only in emotional comfort but also in the practical support they provide.'?", "options": [{"text": "Emotional comfort is valuable mainly because it encourages people to offer practical assistance.", "isCorrect": false}, {"text": "Supportive relationships may help through both emotional reassurance and practical assistance.", "isCorrect": true}, {"text": "Practical assistance from companions is more valuable than the emotional comfort they provide.", "isCorrect": false}, {"text": "Close relationships provide emotional reassurance only when practical assistance is also available.", "isCorrect": false}], "explanation": {"trans": "Nói cách khác, giá trị của các mối quan hệ không chỉ nằm ở sự an ủi tinh thần mà còn ở sự hỗ trợ thiết thực mà chúng mang lại.", "analysis": [{"word": "both emotional... and practical...", "tag": "Paraphrase chuẩn not only... but also...", "tagClass": "tag-correct", "meaning": "Mối quan hệ hỗ trợ giúp đỡ qua cả sự an ủi tinh thần lẫn sự trợ giúp thực tế", "isCorrectWord": true}, {"word": "mainly because", "tag": "sai nghĩa", "tagClass": "tag-wrong-form", "meaning": "cho rằng tinh thần có giá trị vì nó thúc đẩy sự hỗ trợ thực tế"}, {"word": "more valuable than", "tag": "sai nghĩa", "tagClass": "tag-wrong-form", "meaning": "cho rằng hỗ trợ thực tế có giá trị hơn tinh thần"}, {"word": "only when", "tag": "sai điều kiện", "tagClass": "tag-wrong-form", "meaning": "cho rằng chỉ mang lại an ủi tinh thần khi có hỗ trợ thực tế"}], "rule": "Cấu trúc tương đương: not only A but also B = both A and B", "whyCorrect": "Câu gốc dùng cấu trúc <em>not only... but also...</em> (không những tinh thần mà cả thực tế). Câu B diễn đạt lại hoàn hảo bằng <em>both emotional reassurance and practical assistance</em>.", "whyWrong": "A thêm thắt quan hệ nhân quả không có thật; C đưa ra so sánh hơn kém mà bài không hề nói; D đặt điều kiện 'only when' sai lệch hoàn toàn ý tác giả."}}, {"id": 31, "section": "PHẦN VI: BÀI ĐỌC HIỂU - SOCIAL CONNECTIONS & LONGEVITY", "badge": "Từ trái nghĩa (Antonym)", "question": "Question 31. The word beneficial in paragraph 3 is OPPOSITE in meaning to _____.", "options": [{"text": "favourable", "isCorrect": false}, {"text": "valuable", "isCorrect": false}, {"text": "harmful", "isCorrect": true}, {"text": "useful", "isCorrect": false}], "explanation": {"trans": "Từ 'beneficial' (có lợi) trong đoạn 3 TRÁI NGHĨA với từ nào?", "analysis": [{"word": "favourable", "tag": "adj - thuận lợi (đồng nghĩa)", "tagClass": "tag-gram", "meaning": "thuận lợi"}, {"word": "valuable", "tag": "adj - quý giá (đồng nghĩa)", "tagClass": "tag-gram", "meaning": "quý giá"}, {"word": "harmful", "tag": "adj - có hại (TRÁI NGHĨA)", "tagClass": "tag-correct", "meaning": "có hại, độc hại", "isCorrectWord": true}, {"word": "useful", "tag": "adj - hữu ích (đồng nghĩa)", "tagClass": "tag-gram", "meaning": "hữu ích"}], "rule": "Từ vựng: beneficial (adj - có lợi, bổ ích) >< harmful (adj - có hại)", "whyCorrect": "<strong>beneficial</strong> nghĩa là có lợi, đem lại ích lợi. Từ trái nghĩa trực tiếp là <strong>harmful</strong> (có hại, gây hại).", "whyWrong": "favourable, valuable, useful đều mang nghĩa tích cực gần nghĩa với beneficial."}}, {"id": 32, "section": "PHẦN VI: BÀI ĐỌC HIỂU - SOCIAL CONNECTIONS & LONGEVITY", "badge": "Từ đồng nghĩa (Synonym)", "question": "Question 32. The word involuntary in paragraph 4 is closest in meaning to _____.", "options": [{"text": "temporary", "isCorrect": false}, {"text": "deliberate", "isCorrect": false}, {"text": "unexpected", "isCorrect": false}, {"text": "unwanted", "isCorrect": true}], "explanation": {"trans": "Từ 'involuntary' (không tự nguyện / ngoài ý muốn) trong đoạn 4 gần nghĩa nhất với từ nào?", "analysis": [{"word": "temporary", "tag": "adj - tạm thời", "tagClass": "tag-wrong-form", "meaning": "tạm thời, nhất thời"}, {"word": "deliberate", "tag": "adj - cố ý, có chủ đích", "tagClass": "tag-wrong-form", "meaning": "cố tình, có chủ ý (trái nghĩa)"}, {"word": "unexpected", "tag": "adj - bất ngờ", "tagClass": "tag-gram", "meaning": "không ngờ tới"}, {"word": "unwanted", "tag": "adj - không mong muốn", "tagClass": "tag-correct", "meaning": "ngoài ý muốn, không mong muốn", "isCorrectWord": true}], "rule": "Dẫn chứng Paragraph 4: '...involuntary isolation — wanting meaningful contact but being unable to obtain it.'", "whyCorrect": "Bài đọc giải thích ngay sau dấu gạch ngang: <em>wanting meaningful contact but being unable to obtain it</em> (muốn có kết nối nhưng không có được) → sự cô lập này là ngoài mong muốn, không tự nguyện = <strong>unwanted</strong>.", "whyWrong": "<strong>temporary</strong> (tạm thời), <strong>deliberate</strong> (cố tình), <strong>unexpected</strong> (bất ngờ) đều không giải thích đúng định nghĩa mà tác giả đã chỉ rõ."}}, {"id": 33, "section": "PHẦN VI: BÀI ĐỌC HIỂU - SOCIAL CONNECTIONS & LONGEVITY", "badge": "Đọc hiểu chi tiết (NOT agree)", "question": "Question 33. Which of the following statements would the writer NOT agree with?", "options": [{"text": "Having many acquaintances does not necessarily prevent someone from experiencing loneliness.", "isCorrect": false}, {"text": "Supportive companions may influence how people respond to particularly challenging circumstances.", "isCorrect": false}, {"text": "People with smaller social circles should become highly sociable to increase longevity.", "isCorrect": true}, {"text": "Human relationships deserve attention alongside other factors that may influence longevity.", "isCorrect": false}], "explanation": {"trans": "Người viết KHÔNG đồng ý với nhận định nào sau đây?", "analysis": [{"word": "People with smaller social circles should become highly sociable...", "tag": "Trái ngược hoàn toàn đoạn 4", "tagClass": "tag-correct", "meaning": "Tác giả khẳng định: 'This does not mean that people should force themselves to become highly sociable'", "isCorrectWord": true}, {"word": "Having many acquaintances...", "tag": "Tác giả đồng ý (đoạn 3)", "tagClass": "tag-gram", "meaning": "Có nhiều người quen chưa chắc đã ngăn được cảm giác cô đơn"}, {"word": "Supportive companions may influence...", "tag": "Tác giả đồng ý (đoạn 2)", "tagClass": "tag-gram", "meaning": "Bạn bè hỗ trợ giúp đối mặt thử thách"}, {"word": "Human relationships deserve attention...", "tag": "Tác giả đồng ý (đoạn 4)", "tagClass": "tag-gram", "meaning": "Mối quan hệ con người cần được chú ý cùng với các yếu tố khác"}], "rule": "Dẫn chứng Paragraph 4: 'This does not mean that people should force themselves to become highly sociable. Some individuals naturally prefer a smaller social circle, and solitude itself is not necessarily harmful.'", "whyCorrect": "Tác giả nói rõ không phải ai cũng cần ép mình hòa đồng nhiều người, việc có vòng bạn bè nhỏ là bình thường → Tác giả phản đối ý kiến cho rằng người có ít bạn bè bắt buộc phải trở nên hòa đồng để sống lâu.", "whyWrong": "Các câu A, B, D đều được tác giả ủng hộ và khẳng định trực tiếp trong bài đọc."}}, {"id": 34, "section": "PHẦN VI: BÀI ĐỌC HIỂU - SOCIAL CONNECTIONS & LONGEVITY", "badge": "Xác định đoạn văn chứa thông tin", "question": "Question 34. In which paragraph does the writer distinguish between the quantity and quality of social relationships?", "options": [{"text": "Paragraph 1", "isCorrect": false}, {"text": "Paragraph 2", "isCorrect": false}, {"text": "Paragraph 3", "isCorrect": true}, {"text": "Paragraph 4", "isCorrect": false}], "explanation": {"trans": "Ở đoạn văn nào tác giả phân biệt giữa số lượng (quantity) và chất lượng (quality) của các mối quan hệ xã hội?", "analysis": [{"word": "Paragraph 1", "tag": "nói về phát hiện chung", "tagClass": "tag-wrong-form", "meaning": "giới thiệu kết nối xã hội và tuổi thọ"}, {"word": "Paragraph 2", "tag": "nói về cơ chế phản ứng áp lực", "tagClass": "tag-wrong-form", "meaning": "giải thích cách đối mặt với áp lực"}, {"word": "Paragraph 3", "tag": "Khớp câu mở đầu đoạn 3", "tagClass": "tag-correct", "meaning": "'The quality of relationships, however, appears to matter more than their number.'", "isCorrectWord": true}, {"word": "Paragraph 4", "tag": "nói về sự cô lập ngoài ý muốn", "tagClass": "tag-wrong-form", "meaning": "nói về việc ép bản thân hòa đồng và các chương trình cộng đồng"}], "rule": "Dẫn chứng đầu Paragraph 3: 'The quality of relationships, however, appears to matter more than their number. A person surrounded by acquaintances may still experience loneliness, whereas someone with only a few dependable companions may feel genuinely connected.'", "whyCorrect": "Câu mở đầu đoạn 3 phân định rõ ràng giữa chất lượng (quality) và số lượng (number / quantity) của mối quan hệ.", "whyWrong": "Các đoạn khác tập trung vào cơ chế giảm áp lực hoặc sự cô lập ngoài ý muốn chứ không so sánh chất lượng và số lượng bạn bè."}}, {"id": 35, "section": "PHẦN VI: BÀI ĐỌC HIỂU - SOCIAL CONNECTIONS & LONGEVITY", "badge": "Đọc hiểu suy luận (Inference)", "question": "Question 35. Which of the following can be inferred from the passage?", "options": [{"text": "Social interaction becomes increasingly necessary as people grow older.", "isCorrect": false}, {"text": "Emotional support alone can reduce the effects of social isolation.", "isCorrect": false}, {"text": "Frequent social contact does not always indicate meaningful connection.", "isCorrect": true}, {"text": "Community involvement is essential for maintaining strong social relationships.", "isCorrect": false}], "explanation": {"trans": "Điều nào sau đây có thể được suy ra từ bài đọc?", "analysis": [{"word": "Frequent social contact does not always indicate meaningful connection", "tag": "Suy luận chính xác", "tagClass": "tag-correct", "meaning": "Giao tiếp thường xuyên không phải lúc nào cũng biểu thị một kết nối có ý nghĩa", "isCorrectWord": true}, {"word": "Social interaction becomes increasingly necessary...", "tag": "khẳng định tuyệt đối hóa", "tagClass": "tag-wrong-form", "meaning": "bài chỉ nói khó duy trì hơn chứ không nói bắt buộc phải tăng lên"}, {"word": "Emotional support alone...", "tag": "sai từ 'alone'", "tagClass": "tag-wrong-form", "meaning": "chỉ riêng cảm xúc là đủ (sai vì bài nói cần cả hỗ trợ thực tế)"}, {"word": "Community involvement is essential...", "tag": "quá tuyệt đối hóa", "tagClass": "tag-wrong-form", "meaning": "bắt buộc phải tham gia cộng đồng"}], "rule": "Dẫn chứng Paragraph 3: 'A person surrounded by acquaintances may still experience loneliness, whereas someone with only a few dependable companions may feel genuinely connected.'", "whyCorrect": "Một người có rất nhiều người quen vây quanh (tiếp xúc thường xuyên) vẫn có thể cảm thấy cô đơn. Điều này suy ra rằng việc gặp gỡ tiếp xúc nhiều không đồng nghĩa với có kết nối sâu sắc thực sự.", "whyWrong": "A, B, D đều có những từ mang tính tuyệt đối hóa ('alone', 'essential') đi ngược lại với lập luận cẩn trọng của tác giả."}}, {"id": 36, "section": "PHẦN VII: TỰ LUẬN CHUYỂN TRẮC NGHIỆM - HTHT & QUÁ KHỨ ĐƠN", "badge": "Chia thì trong ngoặc (practise)", "question": "Question 36. My aunt _____ meditation regularly for nearly two years to improve her mental well-being. (practise)", "options": [{"text": "practised", "isCorrect": false}, {"text": "has practised", "isCorrect": true}, {"text": "is practising", "isCorrect": false}, {"text": "practises", "isCorrect": false}], "explanation": {"trans": "Dì của tôi đã tập thiền đều đặn trong gần hai năm nay để cải thiện sức khỏe tinh thần.", "analysis": [{"word": "practised", "tag": "Quá khứ đơn", "tagClass": "tag-wrong-form", "meaning": "chỉ hành động đã chấm dứt hoàn toàn"}, {"word": "has practised", "tag": "Hiện tại hoàn thành", "tagClass": "tag-correct", "meaning": "hành động bắt đầu trong quá khứ kéo dài đến nay đi với 'for nearly two years'", "isCorrectWord": true}, {"word": "is practising", "tag": "Hiện tại tiếp diễn", "tagClass": "tag-wrong-form", "meaning": "đang diễn ra tại thời điểm nói"}, {"word": "practises", "tag": "Hiện tại đơn", "tagClass": "tag-wrong-form", "meaning": "thói quen nhưng không đi với khoảng thời gian kéo dài"}], "rule": "Thì Hiện tại hoàn thành với khoảng thời gian: FOR + khoảng thời gian (for nearly two years)", "whyCorrect": "Hành động tập thiền bắt đầu từ gần 2 năm trước và vẫn đang tiếp diễn ở hiện tại với trạng ngữ <strong>for nearly two years</strong>. Chủ ngữ 'My aunt' là ngôi thứ 3 số ít → chia <strong>has practised</strong>.", "whyWrong": "practised (quá khứ đơn) chỉ hành động đã ngừng tập thiền; is practising và practises không dùng với trạng từ kéo dài 'for nearly two years'."}, "reading_passage": {"badge": "Tự luận chia thì chuyển trắc nghiệm (Câu 36 - 38)", "title": "✍️ Complete the following sentences with the Present Perfect or Past Simple form of the verbs in brackets.", "content": "\n        <p style=\"font-weight: 800; color: #2d3436; font-size: 1.05rem;\">Complete the following sentences with the Present Perfect or Past Simple form of the verbs in brackets from 36 to 38.</p>\n        "}}, {"id": 37, "section": "PHẦN VII: TỰ LUẬN CHUYỂN TRẮC NGHIỆM - HTHT & QUÁ KHỨ ĐƠN", "badge": "Chia thì trong ngoặc (adopt)", "question": "Question 37. Daniel _____ a healthier daily schedule two months ago to reduce the effects of overwork. (adopt)", "options": [{"text": "has adopted", "isCorrect": false}, {"text": "adopted", "isCorrect": true}, {"text": "adopts", "isCorrect": false}, {"text": "was adopting", "isCorrect": false}], "explanation": {"trans": "Daniel đã bắt đầu áp dụng một thời gian biểu hàng ngày lành mạnh hơn cách đây hai tháng để giảm bớt ảnh hưởng của việc làm việc quá sức.", "analysis": [{"word": "has adopted", "tag": "Hiện tại hoàn thành", "tagClass": "tag-wrong-form", "meaning": "không dùng với mốc thời gian ago"}, {"word": "adopted", "tag": "Quá khứ đơn", "tagClass": "tag-correct", "meaning": "hành động xảy ra tại thời điểm xác định trong quá khứ 'two months ago'", "isCorrectWord": true}, {"word": "adopts", "tag": "Hiện tại đơn", "tagClass": "tag-wrong-form", "meaning": "thì hiện tại"}, {"word": "was adopting", "tag": "Quá khứ tiếp diễn", "tagClass": "tag-wrong-form", "meaning": "hành động đang diễn ra tại thời điểm cụ thể"}], "rule": "Dấu hiệu thì Quá khứ đơn: thời gian + AGO (two months ago)", "whyCorrect": "Có trạng ngữ chỉ thời gian xác định trong quá khứ <strong>two months ago</strong> → Động từ chia ở <strong>Quá khứ đơn (adopted)</strong>.", "whyWrong": "Hiện tại hoàn thành (has adopted) tuyệt đối không dùng với trạng từ 'ago'."}}, {"id": 38, "section": "PHẦN VII: TỰ LUẬN CHUYỂN TRẮC NGHIỆM - HTHT & QUÁ KHỨ ĐƠN", "badge": "Chia thì trong ngoặc (become)", "question": "Question 38. Regular stretching _____ increasingly popular among office workers in recent years. (become)", "options": [{"text": "became", "isCorrect": false}, {"text": "has become", "isCorrect": true}, {"text": "becomes", "isCorrect": false}, {"text": "is becoming", "isCorrect": false}], "explanation": {"trans": "Việc giãn cơ thường xuyên đã trở nên ngày càng phổ biến trong giới nhân viên văn phòng trong những năm gần đây.", "analysis": [{"word": "became", "tag": "Quá khứ đơn", "tagClass": "tag-wrong-form", "meaning": "sai thì với 'in recent years'"}, {"word": "has become", "tag": "Hiện tại hoàn thành", "tagClass": "tag-correct", "meaning": "chuẩn thì với 'in recent years', chủ ngữ V-ing số ít", "isCorrectWord": true}, {"word": "becomes", "tag": "Hiện tại đơn", "tagClass": "tag-wrong-form", "meaning": "chỉ thói quen/chân lý"}, {"word": "is becoming", "tag": "Hiện tại tiếp diễn", "tagClass": "tag-wrong-form", "meaning": "đang diễn ra"}], "rule": "Dấu hiệu thì: IN RECENT YEARS + Thì Hiện tại hoàn thành", "whyCorrect": "Trạng ngữ <strong>in recent years</strong> (trong những năm gần đây) đi với <strong>Hiện tại hoàn thành</strong>. Chủ ngữ là danh động từ 'Regular stretching' được coi là danh từ số ít → dùng <strong>has become</strong>.", "whyWrong": "became (quá khứ đơn) không dùng cho quá trình kéo dài đến nay trong 'in recent years'."}}, {"id": 39, "section": "PHẦN VIII: ĐỘNG TỪ KHUYẾT THIẾU (MODAL VERBS)", "badge": "Điền Modal Verb phù hợp", "question": "Question 39. According to the youth camp's official regulations, all participants _____ return to their rooms before 10 p.m., even if they would prefer to stay outside longer.", "options": [{"text": "must", "isCorrect": true}, {"text": "should", "isCorrect": false}, {"text": "don't have to", "isCorrect": false}, {"text": "mustn't", "isCorrect": false}], "explanation": {"trans": "Theo quy định chính thức của trại hè thanh thiếu niên, tất cả người tham gia phải trở về phòng của mình trước 10 giờ tối, ngay cả khi họ muốn ở lại ngoài trời lâu hơn.", "analysis": [{"word": "must", "tag": "phải (bắt buộc theo quy định chính thức)", "tagClass": "tag-correct", "meaning": "bắt buộc thực hiện theo quy chế (official regulations)", "isCorrectWord": true}, {"word": "should", "tag": "nên", "tagClass": "tag-gram", "meaning": "chỉ là lời khuyên, không đủ tính ràng buộc pháp lý/quy chế"}, {"word": "don't have to", "tag": "không bắt buộc", "tagClass": "tag-wrong-form", "meaning": "không cần làm (sai ý quy định)"}, {"word": "mustn't", "tag": "không được phép", "tagClass": "tag-wrong-form", "meaning": "cấm làm gì (ngược nghĩa với việc trở về phòng)"}], "rule": "Quy định/nội quy bằng văn bản (official regulations) → Dùng MUST", "whyCorrect": "Cụm 'official regulations' (quy định chính thức) yêu cầu tính bắt buộc tuyệt đối đối với tất cả trại sinh → dùng <strong>must</strong>.", "whyWrong": "<strong>should</strong> chỉ là lời khuyên không bắt buộc; <strong>mustn't</strong> là cấm trở về phòng (vô lý); <strong>don't have to</strong> là về cũng được không về cũng được (sai tính chất nội quy)."}, "reading_passage": {"badge": "Tự luận động từ khuyết thiếu chuyển trắc nghiệm (Câu 39 - 40)", "title": "✍️ Complete the following sentences with must, have to, should, or their appropriate negative forms.", "content": "\n        <p style=\"font-weight: 800; color: #2d3436; font-size: 1.05rem;\">Complete the following sentences with must, have to, should, or their appropriate negative forms from 39 to 40.</p>\n        "}}, {"id": 40, "section": "PHẦN VIII: ĐỘNG TỪ KHUYẾT THIẾU (MODAL VERBS)", "badge": "Điền Modal Verb phù hợp", "question": "Question 40. Parents _____ dismiss their children's concerns simply because they see things differently.", "options": [{"text": "must", "isCorrect": false}, {"text": "shouldn't", "isCorrect": true}, {"text": "have to", "isCorrect": false}, {"text": "don't have to", "isCorrect": false}], "explanation": {"trans": "Cha mẹ không nên gạt bỏ những lo lắng của con cái chỉ vì họ nhìn nhận sự việc theo cách khác.", "analysis": [{"word": "must", "tag": "phải", "tagClass": "tag-wrong-form", "meaning": "bắt buộc cha mẹ phải gạt bỏ (ngược đạo lý và ngữ cảnh)"}, {"word": "shouldn't", "tag": "không nên", "tagClass": "tag-correct", "meaning": "lời khuyên cha mẹ không nên phớt lờ con", "isCorrectWord": true}, {"word": "have to", "tag": "phải", "tagClass": "tag-wrong-form", "meaning": "bắt buộc (sai ngữ nghĩa)"}, {"word": "don't have to", "tag": "không cần phải", "tagClass": "tag-wrong-form", "meaning": "không bắt buộc nhưng làm cũng được (chưa đủ tính khuyên răn)"}], "rule": "Lời khuyên ứng xử gia đình: shouldn't + V_bare", "whyCorrect": "Câu này đưa ra lời khuyên nhân văn trong giao tiếp giữa các thế hệ: Cha mẹ không nên gạt đi ('should not dismiss') cảm xúc của con cái.", "whyWrong": "must và have to mang nghĩa bắt buộc cha mẹ phải coi thường lo lắng của con (hoàn toàn sai); don't have to không mang tính chất khuyên can chuẩn mực."}}, {"id": 41, "section": "PHẦN IX: TỪ LOẠI (WORD FORMATION)", "badge": "Cho dạng đúng của từ (RECOVER)", "question": "Question 41. Getting enough rest after exercise is important for a quick _____ from physical exhaustion. (RECOVER)", "options": [{"text": "recovering", "isCorrect": false}, {"text": "recoverable", "isCorrect": false}, {"text": "recovery", "isCorrect": true}, {"text": "recovered", "isCorrect": false}], "explanation": {"trans": "Nghỉ ngơi đầy đủ sau khi tập thể dục là rất quan trọng để phục hồi nhanh chóng sau sự kiệt sức về thể chất.", "analysis": [{"word": "recovering", "tag": "V-ing / danh động từ", "tagClass": "tag-wrong-form", "meaning": "sự đang hồi phục"}, {"word": "recoverable", "tag": "adj - có thể phục hồi", "tagClass": "tag-gram", "meaning": "tính từ"}, {"word": "recovery", "tag": "n - sự hồi phục", "tagClass": "tag-correct", "meaning": "danh từ chuẩn nghĩa y tế (sự hồi phục)", "isCorrectWord": true}, {"word": "recovered", "tag": "V-ed / phân từ", "tagClass": "tag-wrong-form", "meaning": "đã hồi phục"}], "rule": "Vị trí Danh từ: a + Tính từ (quick) + Danh từ (Noun)", "whyCorrect": "Sau mạo từ 'a' và tính từ 'quick', ta cần một <strong>Danh từ (Noun)</strong>. Danh từ của động từ 'recover' là <strong>recovery</strong> (sự hồi phục sức khỏe).", "whyWrong": "recovering không dùng sau tính từ quick trong cấu trúc này; recoverable là tính từ; recovered là dạng quá khứ/phân từ."}, "reading_passage": {"badge": "Tự luận từ loại Word Form chuyển trắc nghiệm (Câu 41 - 45)", "title": "✍️ Complete the following sentences with the correct form of the words in brackets.", "content": "\n        <p style=\"font-weight: 800; color: #2d3436; font-size: 1.05rem;\">Complete the following sentences with the correct form of the words in brackets from 41 to 45.</p>\n        "}}, {"id": 42, "section": "PHẦN IX: TỪ LOẠI (WORD FORMATION)", "badge": "Cho dạng đúng của từ (HARM)", "question": "Question 42. Eating too much processed food can be _____ to your health in the long term. (HARM)", "options": [{"text": "harmful", "isCorrect": true}, {"text": "harmless", "isCorrect": false}, {"text": "harmfully", "isCorrect": false}, {"text": "harming", "isCorrect": false}], "explanation": {"trans": "Ăn quá nhiều thực phẩm chế biến sẵn có thể gây hại cho sức khỏe của bạn về lâu dài.", "analysis": [{"word": "harmful", "tag": "adj - có hại", "tagClass": "tag-correct", "meaning": "gây hại (cấu trúc: be harmful to sth)", "isCorrectWord": true}, {"word": "harmless", "tag": "adj - vô hại", "tagClass": "tag-wrong-form", "meaning": "vô hại (trái ngược nghĩa thực tế)"}, {"word": "harmfully", "tag": "adv - một cách có hại", "tagClass": "tag-wrong-form", "meaning": "trạng từ"}, {"word": "harming", "tag": "V-ing", "tagClass": "tag-wrong-form", "meaning": "dạng phân từ"}], "rule": "Cấu trúc: be + Tính từ (Adj) + to something", "whyCorrect": "Sau động từ to be 'can be', ta cần một <strong>Tính từ (Adjective)</strong>. Ta có cấu trúc <strong>harmful to health</strong> = <em>có hại cho sức khỏe</em>.", "whyWrong": "harmless mang nghĩa 'vô hại' (sai với tác hại của đồ ăn chế biến sẵn); harmfully là trạng từ; harming là dạng V-ing."}}, {"id": 43, "section": "PHẦN IX: TỪ LOẠI (WORD FORMATION)", "badge": "Cho dạng đúng của từ (COURAGE)", "question": "Question 43. Parents should _____ their children to express their own ideas and make appropriate choices. (COURAGE)", "options": [{"text": "encouragement", "isCorrect": false}, {"text": "courageous", "isCorrect": false}, {"text": "encourage", "isCorrect": true}, {"text": "encouraging", "isCorrect": false}], "explanation": {"trans": "Cha mẹ nên khuyến khích con cái bày tỏ ý kiến của riêng mình và đưa ra những lựa chọn phù hợp.", "analysis": [{"word": "encouragement", "tag": "n - sự khuyến khích", "tagClass": "tag-wrong-form", "meaning": "danh từ"}, {"word": "courageous", "tag": "adj - dũng cảm", "tagClass": "tag-gram", "meaning": "tính từ"}, {"word": "encourage", "tag": "v - khuyến khích, động viên", "tagClass": "tag-correct", "meaning": "động từ nguyên thể (encourage sb to do sth)", "isCorrectWord": true}, {"word": "encouraging", "tag": "adj / V-ing", "tagClass": "tag-wrong-form", "meaning": "mang tính khích lệ"}], "rule": "Sau Modal verb 'should' + Động từ nguyên thể (V_bare)", "whyCorrect": "Sau động từ khuyết thiếu 'should', ta bắt buộc phải dùng một <strong>Động từ nguyên mẫu</strong>. Động từ phái sinh từ danh từ 'courage' là <strong>encourage</strong> (khuyến khích). Cấu trúc: <em>encourage sb to do sth</em>.", "whyWrong": "encouragement là danh từ; courageous là tính từ; encouraging là dạng V-ing/tính từ."}}, {"id": 44, "section": "PHẦN IX: TỪ LOẠI (WORD FORMATION)", "badge": "Cho dạng đúng của từ (FREE)", "question": "Question 44. As teenagers grow older, they usually want greater _____ in making everyday choices. (FREE)", "options": [{"text": "freely", "isCorrect": false}, {"text": "freedom", "isCorrect": true}, {"text": "freeing", "isCorrect": false}, {"text": "freed", "isCorrect": false}], "explanation": {"trans": "Khi thanh thiếu niên lớn lên, các em thường muốn có sự tự do lớn hơn trong việc đưa ra các lựa chọn hàng ngày.", "analysis": [{"word": "freely", "tag": "adv - một cách tự do", "tagClass": "tag-wrong-form", "meaning": "trạng từ"}, {"word": "freedom", "tag": "n - sự tự do", "tagClass": "tag-correct", "meaning": "sự tự do, quyền tự do (danh từ)", "isCorrectWord": true}, {"word": "freeing", "tag": "V-ing / adj", "tagClass": "tag-wrong-form", "meaning": "sự giải phóng"}, {"word": "freed", "tag": "V-ed", "tagClass": "tag-wrong-form", "meaning": "được giải phóng"}], "rule": "Vị trí Danh từ: want + Tính từ (greater) + Danh từ (Noun)", "whyCorrect": "Sau ngoại động từ 'want' và tính từ so sánh 'greater', ta cần một <strong>Danh từ</strong> làm tân ngữ. Danh từ của tính từ 'free' là <strong>freedom</strong> (sự tự do).", "whyWrong": "freely là trạng từ; freeing là phân từ; freed là quá khứ của động từ free."}}, {"id": 45, "section": "PHẦN IX: TỪ LOẠI (WORD FORMATION)", "badge": "Cho dạng đúng của từ (RESPECT)", "question": "Question 45. Family members should speak _____ to one another, even when they strongly disagree. (RESPECT)", "options": [{"text": "respectful", "isCorrect": false}, {"text": "respectfully", "isCorrect": true}, {"text": "respecting", "isCorrect": false}, {"text": "respectable", "isCorrect": false}], "explanation": {"trans": "Các thành viên trong gia đình nên nói chuyện một cách tôn trọng với nhau, ngay cả khi họ bất đồng ý kiến gay gắt.", "analysis": [{"word": "respectful", "tag": "adj - lễ phép, tôn trọng", "tagClass": "tag-gram", "meaning": "tính từ"}, {"word": "respectfully", "tag": "adv - một cách tôn trọng", "tagClass": "tag-correct", "meaning": "trạng từ bổ nghĩa cho động từ 'speak'", "isCorrectWord": true}, {"word": "respecting", "tag": "V-ing", "tagClass": "tag-wrong-form", "meaning": "dạng V-ing"}, {"word": "respectable", "tag": "adj - đáng kính, đứng đắn", "tagClass": "tag-gram", "meaning": "tính từ chỉ phẩm chất đáng kính"}], "rule": "Trạng từ bổ nghĩa cho động từ thường: speak + Trạng từ (Adverb)", "whyCorrect": "Để bổ nghĩa cho động từ thường 'speak' (nói chuyện như thế nào), ta cần một <strong>Trạng từ (Adverb)</strong> kết thúc bằng đuôi -ly: <strong>respectfully</strong> (một cách tôn trọng).", "whyWrong": "respectful và respectable là các tính từ (không thể bổ nghĩa cho động từ thường speak); respecting là phân từ."}}, {"id": 46, "section": "PHẦN X: VIẾT LẠI CÂU KHÔNG ĐỔI NGHĨA", "badge": "Chuyển Quá khứ đơn → HTHT với FOR", "question": "Question 46. Viết lại câu không đổi nghĩa dùng từ (FOR):\nDavid started following a healthier diet six months ago.\n→ David ________________________________________", "options": [{"text": "has followed a healthier diet for six months.", "isCorrect": true}, {"text": "followed a healthier diet for six months ago.", "isCorrect": false}, {"text": "has started following a healthier diet for six months ago.", "isCorrect": false}, {"text": "is following a healthier diet for six months.", "isCorrect": false}], "explanation": {"trans": "Câu gốc: David đã bắt đầu theo đuổi chế độ ăn uống lành mạnh hơn cách đây sáu tháng.\n= David đã theo đuổi chế độ ăn uống lành mạnh hơn được sáu tháng rồi.", "analysis": [{"word": "has followed ... for six months.", "tag": "Chuẩn cấu trúc 100%", "tagClass": "tag-correct", "meaning": "Bỏ started ... ago, đổi sang S + have/has VpII + for + time", "isCorrectWord": true}, {"word": "followed ... for six months ago", "tag": "Sai ngữ pháp", "tagClass": "tag-wrong-form", "meaning": "for không đi cùng với ago"}, {"word": "has started ... for six months ago", "tag": "Sai ngữ nghĩa và ngữ pháp", "tagClass": "tag-wrong-form", "meaning": "start là hành động tức thời không kéo dài với for"}, {"word": "is following ... for six months", "tag": "Sai thì", "tagClass": "tag-wrong-form", "meaning": "hiện tại tiếp diễn không diễn tả hành động kéo dài từ quá khứ có mốc for"}], "rule": "Quy tắc viết lại câu: S + started / began + V-ing + [khoảng thời gian] + ago ⇔ S + have / has + VpII + FOR + [khoảng thời gian]", "whyCorrect": "Khi viết lại câu từ 'started V-ing ... ago' sang dùng 'FOR', ta bỏ 'started' và 'ago', chuyển động từ chính sang thì <strong>Hiện tại hoàn thành: David has followed a healthier diet for six months</strong>.", "whyWrong": "Không giữ lại từ 'started' khi dùng với 'for' vì việc 'bắt đầu' chỉ diễn ra trong một khoảnh khắc chứ không kéo dài 6 tháng. Không ghép 'for' với 'ago'."}, "reading_passage": {"badge": "Tự luận viết lại câu chuyển trắc nghiệm (Câu 46 - 50)", "title": "✍️ Rewrite each sentence using the word in brackets without changing its meaning.", "content": "\n        <p style=\"font-weight: 800; color: #2d3436; font-size: 1.05rem;\">Rewrite each sentence using the word in brackets without changing its meaning from 46 to 50.</p>\n        "}}, {"id": 47, "section": "PHẦN X: VIẾT LẠI CÂU KHÔNG ĐỔI NGHĨA", "badge": "Chuyển HTHT phủ định → The last time ... was ... AGO", "question": "Question 47. Viết lại câu không đổi nghĩa dùng từ (AGO):\nEmma hasn't eaten fast food for two months.\n→ The last time ________________________________________", "options": [{"text": "Emma ate fast food was two months ago.", "isCorrect": true}, {"text": "Emma hasn't eaten fast food was two months ago.", "isCorrect": false}, {"text": "Emma had eaten fast food two months ago.", "isCorrect": false}, {"text": "Emma was eating fast food was two months ago.", "isCorrect": false}], "explanation": {"trans": "Câu gốc: Emma đã không ăn đồ ăn nhanh được hai tháng rồi.\n= Lần cuối cùng Emma ăn đồ ăn nhanh là cách đây hai tháng.", "analysis": [{"word": "Emma ate fast food was two months ago.", "tag": "Chuẩn cấu trúc The last time", "tagClass": "tag-correct", "meaning": "The last time + S + V-ed + was + [khoảng thời gian] + ago", "isCorrectWord": true}, {"word": "Emma hasn't eaten fast food was...", "tag": "Sai thì và thể", "tagClass": "tag-wrong-form", "meaning": "trong mệnh đề the last time động từ phải chia khẳng định quá khứ đơn"}, {"word": "had eaten...", "tag": "Thiếu động từ liên kết was", "tagClass": "tag-wrong-form", "meaning": "thiếu vị ngữ chính 'was two months ago'"}, {"word": "was eating...", "tag": "Sai thì quá khứ tiếp diễn", "tagClass": "tag-wrong-form", "meaning": "sai thì"}], "rule": "Cấu trúc: S + have/has not + VpII + for [time] ⇔ The last time + S + V_quá khứ đơn + was + [time] + AGO", "whyCorrect": "Chuyển sang cấu trúc <strong>The last time + S + V(quá khứ) + was + [time] + ago</strong>: <em>The last time Emma ate fast food was two months ago.</em>", "whyWrong": "Sau 'The last time' động từ chia ở dạng khẳng định quá khứ đơn (ate), không dùng thể phủ định hay thì HTHT."}}, {"id": 48, "section": "PHẦN X: VIẾT LẠI CÂU KHÔNG ĐỔI NGHĨA", "badge": "Chuyển This is the first time → have never ... BEFORE", "question": "Question 48. Viết lại câu không đổi nghĩa dùng từ (BEFORE):\nThis is the first time Jack has taken part in a long-distance cycling event.\n→ Jack ________________________________________", "options": [{"text": "has never taken part in a long-distance cycling event before.", "isCorrect": true}, {"text": "took part in a long-distance cycling event before.", "isCorrect": false}, {"text": "had never taken part in a long-distance cycling event before.", "isCorrect": false}, {"text": "has already taken part in a long-distance cycling event before.", "isCorrect": false}], "explanation": {"trans": "Câu gốc: Đây là lần đầu tiên Jack tham gia một sự kiện đạp xe đường dài.\n= Jack chưa từng tham gia một sự kiện đạp xe đường dài nào trước đây.", "analysis": [{"word": "has never taken part ... before.", "tag": "Chuẩn cấu trúc 100%", "tagClass": "tag-correct", "meaning": "S + have/has never + VpII + ... + before", "isCorrectWord": true}, {"word": "took part ... before", "tag": "Sai nghĩa và sai thì", "tagClass": "tag-wrong-form", "meaning": "biến thành câu khẳng định đã từng tham gia"}, {"word": "had never taken part...", "tag": "Sai thì", "tagClass": "tag-wrong-form", "meaning": "không dùng quá khứ hoàn thành khi câu gốc ở hiện tại"}, {"word": "has already taken part...", "tag": "Trái ngược nghĩa", "tagClass": "tag-wrong-form", "meaning": "already (đã rồi) ngược với first time"}], "rule": "Cấu trúc kinh điển: This is the first time + S + have/has + VpII ⇔ S + have/has + NEVER + VpII + BEFORE", "whyCorrect": "Lần đầu tiên làm việc gì đồng nghĩa với việc chưa bao giờ làm việc đó trước đây: <strong>Jack has never taken part in a long-distance cycling event before.</strong>", "whyWrong": "Dùng 'had never' là sai thì (câu gốc dùng is/has); dùng 'already' hay câu khẳng định làm sai lệch hoàn toàn ý nghĩa của câu gốc."}}, {"id": 49, "section": "PHẦN X: VIẾT LẠI CÂU KHÔNG ĐỔI NGHĨA", "badge": "Chuyển It is not necessary → don't HAVE to", "question": "Question 49. Viết lại câu không đổi nghĩa dùng từ (HAVE):\nIt is not necessary for teenagers to agree with every choice their parents make.\n→ Teenagers ________________________________________", "options": [{"text": "don't have to agree with every choice their parents make.", "isCorrect": true}, {"text": "mustn't have to agree with every choice their parents make.", "isCorrect": false}, {"text": "haven't to agree with every choice their parents make.", "isCorrect": false}, {"text": "shouldn't have agree with every choice their parents make.", "isCorrect": false}], "explanation": {"trans": "Câu gốc: Thanh thiếu niên không nhất thiết phải đồng ý với mọi lựa chọn mà cha mẹ đưa ra.\n= Thanh thiếu niên không cần phải đồng ý với mọi lựa chọn mà cha mẹ đưa ra.", "analysis": [{"word": "don't have to agree...", "tag": "Chuẩn cấu trúc Modal Verb", "tagClass": "tag-correct", "meaning": "don't have to = not necessary (không cần phải)", "isCorrectWord": true}, {"word": "mustn't have to...", "tag": "Sai ngữ pháp", "tagClass": "tag-wrong-form", "meaning": "không ghép hai trợ động từ khuyết thiếu cùng lúc"}, {"word": "haven't to agree...", "tag": "Sai ngữ pháp tiếng Anh hiện đại", "tagClass": "tag-wrong-form", "meaning": "have to phủ định phải mượn trợ động từ don't/doesn't"}, {"word": "shouldn't have agree...", "tag": "Sai cấu trúc", "tagClass": "tag-wrong-form", "meaning": "sai dạng động từ"}], "rule": "Cấu trúc tương đương: It is not necessary for sb to V ⇔ Sb + don't / doesn't HAVE to + V", "whyCorrect": "'Not necessary' (không cần thiết) được viết lại bằng <strong>don't have to</strong> (không phải, không cần phải). Chủ ngữ 'Teenagers' là số nhiều → <em>Teenagers don't have to agree with every choice their parents make.</em>", "whyWrong": "mustn't mang nghĩa cấm đoán (sai nghĩa); haven't to là sai ngữ pháp."}}, {"id": 50, "section": "PHẦN X: VIẾT LẠI CÂU KHÔNG ĐỔI NGHĨA", "badge": "Chuyển It is advisable → SHOULD", "question": "Question 50. Viết lại câu không đổi nghĩa dùng từ (SHOULD):\nIt is advisable for young people to listen carefully before responding to older family members.\n→ Young people ________________________________________", "options": [{"text": "should listen carefully before responding to older family members.", "isCorrect": true}, {"text": "should to listen carefully before responding to older family members.", "isCorrect": false}, {"text": "should have listened carefully before responding to older family members.", "isCorrect": false}, {"text": "should be listening carefully before responding to older family members.", "isCorrect": false}], "explanation": {"trans": "Câu gốc: Người trẻ tuổi nên lắng nghe cẩn thận trước khi phản hồi các thành viên lớn tuổi trong gia đình.\n= Người trẻ tuổi nên lắng nghe cẩn thận trước khi phản hồi các thành viên lớn tuổi trong gia đình.", "analysis": [{"word": "should listen carefully...", "tag": "Chuẩn cấu trúc 100%", "tagClass": "tag-correct", "meaning": "should + V_bare (khuyên nên làm gì)", "isCorrectWord": true}, {"word": "should to listen...", "tag": "Sai ngữ pháp nghiêm trọng", "tagClass": "tag-wrong-form", "meaning": "sau should không bao giờ có 'to'"}, {"word": "should have listened...", "tag": "Sai ngữ cảnh", "tagClass": "tag-wrong-form", "meaning": "should have VpII diễn tả sự hối tiếc trong quá khứ"}, {"word": "should be listening...", "tag": "Không cần thiết chia tiếp diễn", "tagClass": "tag-wrong-form", "meaning": "tiếp diễn không phù hợp lời khuyên chung"}], "rule": "Cấu trúc tương đương: It is advisable for sb to V ⇔ Sb + SHOULD + V_bare", "whyCorrect": "'It is advisable' = là điều nên làm, là lời khuyên → viết lại với <strong>should + V_nguyên thể</strong>: <em>Young people should listen carefully before responding to older family members.</em>", "whyWrong": "Sau modal verb 'should' không dùng 'to'; 'should have listened' dùng để trách móc việc đã xảy ra trong quá khứ (sai nghĩa câu gốc)."}}];
+
+    // ==========================================
+    // 4. SHUFFLE ARRAY ALGORITHM (Fisher-Yates)
+    // ==========================================
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    // STATE TRACKING
+    let userScore = 0;
+    let answeredQuestionsCount = 0;
+    const totalQuestions = quizData.length;
+    const answeredMap = {};
+
+    // Toggle Collapsible Tip Banner
+    function toggleTipBanner() {
+      const banner = document.getElementById('tipBanner');
+      const btn = banner.querySelector('.tip-collapse-btn');
+      const content = banner.querySelector('.tip-banner-content');
+      if (content.style.display === 'none') {
+        content.style.display = 'flex';
+        btn.innerText = '-';
+      } else {
+        content.style.display = 'none';
+        btn.innerText = '+';
+      }
+    }
+
+    // Update Progress Bar & Counter
+    function updateProgress() {
+      document.getElementById('star-score-display').innerText = `${userScore}/${totalQuestions}`;
+      document.getElementById('counter-pill').innerText = `${answeredQuestionsCount}/${totalQuestions}`;
+      const pct = (answeredQuestionsCount / totalQuestions) * 100;
+      document.getElementById('progress-bar').style.width = `${pct}%`;
+    }
+
+    // ==========================================
+    // 5. RENDER QUIZ INTERFACE IN EXACT SEQUENTIAL ORDER
+    // ==========================================
+    function renderQuiz() {
+      const listContainer = document.getElementById('questions-list');
+      listContainer.innerHTML = '';
+
+      let lastSection = "";
+
+      quizData.forEach((q, index) => {
+        // 1. Render section header banner if changed
+        if (q.section && q.section !== lastSection) {
+          lastSection = q.section;
+          const sectionHeader = document.createElement('div');
+          sectionHeader.className = 'section-header-banner';
+          sectionHeader.innerHTML = `<span>📚</span> ${q.section}`;
+          listContainer.appendChild(sectionHeader);
+        }
+
+        // 2. Render Inline Reading Passage IMMEDIATELY BEFORE its question set
+        if (q.reading_passage) {
+          const passCard = document.createElement('div');
+          passCard.className = 'passage-card';
+          passCard.innerHTML = `
+            <span class="passage-badge">${q.reading_passage.badge}</span>
+            <div class="passage-text">
+              ${q.reading_passage.content}
+            </div>
+          `;
+          listContainer.appendChild(passCard);
+        }
+
+        // 3. Render Question Card
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = `q-card-${q.id}`;
+
+        let cardHtml = `
+          <div class="question-top">
+            <div class="q-number-pill">CÂU ${q.id}</div>
+            <div class="q-type-badge">${q.badge}</div>
+          </div>
+          <div class="question-content">${q.question}</div>
+          <div class="options-grid" id="options-grid-${q.id}"></div>
+        `;
+
+        // Detailed Explanation Box (Exact style matching Screenshot 1)
+        const exp = q.explanation;
+        let analysisHtml = '';
+        exp.analysis.forEach(item => {
+          analysisHtml += `
+            <div class="analysis-item">
+              <span class="analysis-word ${item.isCorrectWord ? 'is-correct-word' : ''}">${item.word}</span>
+              <span class="analysis-tag ${item.tagClass}">${item.tag}</span> =
+              <div class="analysis-meaning">${item.meaning}</div>
+            </div>
+          `;
+        });
+
+        cardHtml += `
+          <div class="explanation-card" id="explain-${q.id}">
+            <div class="explain-header-title">
+              <span>⚡</span> GIẢI THÍCH CHI TIẾT
+            </div>
+            <div class="trans-box">
+              <span>💬</span> <span><strong>Dịch:</strong> ${exp.trans}</span>
+            </div>
+            <div class="explain-section-title">1. Phân tích 4 đáp án:</div>
+            <div class="options-analysis-grid">
+              ${analysisHtml}
+            </div>
+            <div class="reason-box">
+              <span class="reason-tag reason-correct-tag">2. ✅ TẠI SAO ĐÚNG?</span>
+              <strong>[${exp.rule}]:</strong> ${exp.whyCorrect}
+            </div>
+            <div class="reason-box" style="margin-top: 12px;">
+              <span class="reason-tag reason-wrong-tag">3. ❌ TẠI SAO SAI?</span>
+              ${exp.whyWrong}
+            </div>
+          </div>
+        `;
+
+        card.innerHTML = cardHtml;
+        listContainer.appendChild(card);
+
+        // Populate and shuffle answer options
+        const grid = card.querySelector(`#options-grid-${q.id}`);
+        const shuffled = shuffleArray(q.options);
+        shuffled.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerText = opt.text;
+          btn.onclick = () => handleChoice(q.id, btn, opt.isCorrect, card);
+          grid.appendChild(btn);
+        });
+      });
+
+      updateProgress();
+    }
+
+    // ==========================================
+    // 6. HANDLING ANSWER SELECTION
+    // ==========================================
+    function handleChoice(questionId, clickedBtn, isCorrect, cardElement) {
+      if (answeredMap[questionId]) return;
+      answeredMap[questionId] = true;
+      answeredQuestionsCount++;
+
+      // Lock all option buttons in this question
+      const buttons = cardElement.querySelectorAll('.option-btn');
+      buttons.forEach(b => b.disabled = true);
+
+      // Instant Explanation reveal
+      const explainCard = document.getElementById(`explain-${questionId}`);
+      if (explainCard) explainCard.style.display = 'block';
+
+      if (isCorrect) {
+        userScore++;
+        clickedBtn.classList.add('btn-correct');
+        playSoundCorrect();
+        const rect = clickedBtn.getBoundingClientRect();
+        launchConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
+      } else {
+        clickedBtn.classList.add('btn-wrong');
+        playSoundWrong();
+
+        // Highlight the correct button in green so student learns
+        const currentQ = quizData.find(q => q.id === questionId);
+        const correctOption = currentQ.options.find(o => o.isCorrect);
+        buttons.forEach(b => {
+          if (b.innerText === correctOption.text) {
+            b.classList.add('btn-correct');
+          }
+        });
+      }
+
+      updateProgress();
+    }
+
+    // ==========================================
+    // 7. SUBMIT & STUDENT NAME MODAL LOGIC
+    // ==========================================
+    function openNameModal() {
+      if (answeredQuestionsCount < totalQuestions) {
+        const remaining = totalQuestions - answeredQuestionsCount;
+        const confirmGo = confirm(`⚠️ Con vẫn còn ${remaining} câu chưa làm xong! Con có muốn làm nốt để đạt điểm tối đa không? Bấm OK để tiếp tục làm bài nhé!`);
+        if (confirmGo) return;
+      }
+      document.getElementById('nameModal').style.display = 'flex';
+      document.getElementById('studentNameInput').focus();
+    }
+
+    function confirmStudentName() {
+      const input = document.getElementById('studentNameInput');
+      const err = document.getElementById('nameErrorMsg');
+      const name = input.value.trim();
+
+      if (!name) {
+        input.classList.add('input-error');
+        err.style.display = 'block';
+        return;
+      }
+
+      input.classList.remove('input-error');
+      err.style.display = 'none';
+      document.getElementById('nameModal').style.display = 'none';
+
+      showFinalResults(name);
+    }
+
+    function showFinalResults(studentName) {
+      const pct = (userScore / totalQuestions) * 100;
+      const titleElem = document.getElementById('resultStudentTitle');
+      const scoreElem = document.getElementById('resultScoreText');
+      const msgElem = document.getElementById('resultEncouragement');
+
+      scoreElem.innerText = `${userScore} / ${totalQuestions} CÂU ĐÚNG (${pct.toFixed(0)}%)`;
+
+      if (pct >= 90) {
+        titleElem.innerHTML = `🌟 XUẤT SẮC TUYỆT ĐỐI! <br>${studentName}`;
+        msgElem.innerHTML = `Làm tốt lắm, con cố gắng rinh điểm 10 ở lần sau nha! 🎉 Cô Lê Hằng chúc mừng con đã nắm rất vững kiến thức cả 2 Unit 1 và Unit 2!`;
+        launchConfetti(window.innerWidth / 2, window.innerHeight / 2, 140);
+      } else if (pct >= 60) {
+        titleElem.innerHTML = `👏 TIẾN BỘ RẤT KHÁ! <br>${studentName}`;
+        msgElem.innerHTML = `Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau! ✨`;
+        launchConfetti(window.innerWidth / 2, window.innerHeight / 2, 70);
+      } else {
+        titleElem.innerHTML = `💪 ĐỪNG NẢN CHÍ! <br>${studentName}`;
+        msgElem.innerHTML = `Điểm lần này chưa cao lắm, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau! 💛`;
+      }
+
+      document.getElementById('resultModal').style.display = 'flex';
+    }
+
+    function closeResultModal() {
+      document.getElementById('resultModal').style.display = 'none';
+      window.scrollTo({ top: 350, behavior: 'smooth' });
+    }
+
+    // Start App
+    window.addEventListener('DOMContentLoaded', () => {
+      renderQuiz();
+    });
+  </script>
+</body>
+</html>
